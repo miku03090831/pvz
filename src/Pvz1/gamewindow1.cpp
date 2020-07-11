@@ -1,13 +1,21 @@
-#include "gamewindow1.h"
+﻿#include "gamewindow1.h"
 
 GameWindow1::GameWindow1(QWidget *parent) :
     QWidget(parent)
 {
     //设置按钮和窗口
+    QImage menu_background;
+    this->resize(805,600);
+    menu_background.load(":/image/res/background1.png");
+    setAutoFillBackground(true);
+    QPalette pal(palette());
+    pal.setBrush(QPalette::Window, QBrush(menu_background.scaled(size(), Qt::IgnoreAspectRatio,
+                               Qt::SmoothTransformation)));
+    setPalette(pal);
+    //设置背景
+
     b3.setParent(this);
-    b3.setText("back to main");
-    b3.setGeometry(100,250,150,50);
-    setWindowTitle("普通无尽");
+   //等待设置，需要先设置植物栏，准备放在植物栏右侧
 
     //connect的四个参数分别是：1.信号发出者 2.发生的事件 3.信号接受者 4.要执行的动作，也就是槽函数
     //我们返回主窗口分为两步：1.点击b3发出一个mysolt信号 2.主窗口收到这个信号之后，调用主窗口的back1方法来实现返回主窗口（下面两行注释详细说明）

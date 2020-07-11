@@ -6,7 +6,7 @@
 #include "gamewindow1.h"
 #include "gamewindow2.h"
 
-class MainWindow : public QMainWindow
+class MainWindow : public QWidget
 {
     Q_OBJECT
 
