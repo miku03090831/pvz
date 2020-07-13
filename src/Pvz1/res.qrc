@@ -19,5 +19,18 @@
         <file>res/Sunflower.gif</file>
         <file>res/back_btn.png</file>
         <file>res/peanut_cursor.png</file>
+        <file>res/SnowPea.gif</file>
+        <file>res/WallNut.gif</file>
+        <file>res/Wallnut_cracked1.gif</file>
+        <file>res/Wallnut_cracked2.gif</file>
+        <file>res/Repeater.gif</file>
+        <file>res/cherry_cursor.png</file>
+        <file>res/repeater_cursor.png</file>
+        <file>res/snow_cursor.png</file>
+        <file>res/wallnut_cursor.png</file>
+        <file>res/sunflower_cursor.png</file>
+        <file>res/Shovel.png</file>
+        <file>res/CherryBomb.gif</file>
+        <file>res/CherryBomb2.gif</file>
     </qresource>
 </RCC>

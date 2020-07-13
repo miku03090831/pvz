@@ -9,13 +9,17 @@
 #include<QtGui>
 
 class Plant_Pic:public QLabel{
+    Q_OBJECT
 public:
     Plant_Pic();
     int set_pic(int type);
+    void removecherry();
     int gettype();
 private:
     int type=0;
     QMovie movie;
+public slots:
+    void endstop(int framenumber);
 };
 
 

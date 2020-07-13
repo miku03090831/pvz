@@ -32,9 +32,9 @@ GameWindow1::GameWindow1(QWidget *parent) :
     p2.setGeometry(204,5,50,75);
     p3.setStyleSheet("QPushButton{border-image:url(:/image/res/repeater_box.png);}");
     p3.setGeometry(262,5,50,75);
-    p4.setStyleSheet("QPushButton{border-image:url(:/image/res/wallnut_box.png);}");
+    p4.setStyleSheet("QPushButton{border-image:url(:/image/res/cherry_box.png);}");
     p4.setGeometry(320,5,50,75);
-    p5.setStyleSheet("QPushButton{border-image:url(:/image/res/cherry_box.png);}");
+    p5.setStyleSheet("QPushButton{border-image:url(:/image/res/wallnut_box.png);}");
     p5.setGeometry(378,5,50,75);
     shovel.setGeometry(446,0,70,72);
     shovel.setStyleSheet("QPushButton{border-image:url(:/image/res/shovel_box.png);}");
@@ -51,7 +51,7 @@ GameWindow1::GameWindow1(QWidget *parent) :
             box[i][j].setStyleSheet("QPushButton{background-color:transparent;}");
 
             pic[i][j].setParent(this);
-            connect(&box[i][j],SIGNAL(clicked()),&signalmapper,SLOT(map()));
+            connect(&box[i][j],SIGNAL(clicked()),&signalmapper,SLOT(map()));    //进行信号的分发，增加一个参数
             signalmapper.setMapping(&box[i][j],i*10+j);
 
         }
@@ -72,25 +72,63 @@ GameWindow1::GameWindow1(QWidget *parent) :
 void GameWindow1::putplant(int place){  //点击格子时触发，用x*10+y表示位置，内容仅用于测试，需要填充
     int i=place/10;
     int j=place%10;
-    if(pic[i][j].gettype()==0)pic[i][j].set_pic(2);
+    if(pic[i][j].gettype()==0)pic[i][j].set_pic(8);
     else pic[i][j].set_pic(0);
     box[i][j].raise();
 }
 
 void GameWindow1::plant1(){ //点击植物栏时触发，只写了一个，内容仅用于测试，需要补充
-    cursorchange(2);
+    cursorchange(7);
 }
 
 void GameWindow1::cursorchange(int cursortype){ //设置鼠标的样子，点击植物栏时改变，没写完，在p图，同时会改变中间变量（用于指明现在要放什么）
+    QPixmap pixmap;
+    QCursor cursor;
     switch (cursortype) {
     case 0:
-        cursortype=0;
-        this->setCursor(Qt::ArrowCursor);
+        cursor_type=0;
+        this->setCursor(Qt::ArrowCursor);   //正常图标
+        break;
+    case 1:
+        pixmap.load(":/image/res/sunflower_cursor.png");    //太阳花
+        cursor_type=1;
+        cursor=QCursor(pixmap,-1,-1);
+        setCursor(cursor);
         break;
     case 2:
-        QPixmap pixmap(":/image/res/peanut_cursor.png");
-        cursortype=2;
-        QCursor cursor=QCursor(pixmap,-1,-1);
+        pixmap.load(":/image/res/peanut_cursor.png");   //豌豆
+        cursor_type=2;
+        cursor=QCursor(pixmap,-1,-1);
+        setCursor(cursor);
+        break;
+    case 3:
+        pixmap.load(":/image/res/snow_cursor.png"); //寒冰
+        cursor_type=3;
+        cursor=QCursor(pixmap,-1,-1);
+        setCursor(cursor);
+        break;
+    case 4:
+        pixmap.load(":/image/res/repeater_cursor.png"); //双发
+        cursor_type=4;
+        cursor=QCursor(pixmap,-1,-1);
+        setCursor(cursor);
+        break;
+    case 5:
+        pixmap.load(":/image/res/cherry_cursor.png");   //樱桃
+        cursor_type=5;
+        cursor=QCursor(pixmap,-1,-1);
+        setCursor(cursor);
+        break;
+    case 6:
+        pixmap.load(":/image/res/wallnut_cursor.png");  //坚果墙
+        cursor_type=6;
+        cursor=QCursor(pixmap,-1,-1);
+        setCursor(cursor);
+        break;
+    case 7:
+        pixmap.load(":/image/res/Shovel.png");  //铲子
+        cursor_type=7;
+        cursor=QCursor(pixmap,-1,-1);
         setCursor(cursor);
         break;
     }
@@ -113,7 +151,7 @@ Plant_Pic::Plant_Pic(){
     this->setMovie(&movie);
 }
 
-int Plant_Pic::set_pic(int type){   //显示植物，0为不显示，之后依次按照植物栏每种植物，在p图
+int Plant_Pic::set_pic(int type){   //显示植物，0为不显示，之后依次按照植物栏每种植物
     switch (type) {
     case 0:
         movie.stop();
@@ -121,17 +159,71 @@ int Plant_Pic::set_pic(int type){   //显示植物，0为不显示，之后依�
         this->type=0;
         return 0;
     case 1:
-        movie.setFileName(":/image/res/Sunflower.gif");
+        movie.setFileName(":/image/res/Sunflower.gif"); //太阳花
         movie.start();
         this->type=1;
         this->show();
         return 0;
     case 2:
-        movie.setFileName(":/image/res/Peashooter.gif");
+        movie.setFileName(":/image/res/Peashooter.gif");    //豌豆
         movie.start();
         this->type=2;
         this->show();
         return 0;
+    case 3:
+        movie.setFileName(":/image/res/SnowPea.gif");   //寒冰
+        movie.start();
+        this->type=3;
+        this->show();
+        return 0;
+    case 4:
+        movie.setFileName(":/image/res/Repeater.gif");  //双发
+        movie.start();
+        this->type=4;
+        this->show();
+        return 0;
+    case 5:
+        movie.setFileName(":/image/res/CherryBomb2.gif");   //炸弹
+        movie.start();
+        this->move(this->x()-20,this->y()-10);
+        connect(&movie,SIGNAL(frameChanged(int)),this,SLOT(endstop(int)));  //用于播放一次后消失
+        this->type=5;
+        this->show();
+        return 0;
+    case 6:
+        movie.setFileName(":/image/res/WallNut.gif");   //坚果墙
+        movie.start();
+        this->type=6;
+        this->show();
+        return 0;
+    case 7:
+        movie.setFileName(":/image/res/Wallnut_cracked1.gif");  //损毁坚果墙
+        movie.start();
+        this->type=7;
+        this->show();
+        return 0;
+    case 8:
+        movie.setFileName(":/image/res/Wallnut_cracked2.gif");  //损毁坚果墙2
+        movie.start();
+        this->type=8;
+        this->show();
+        return 0;
+    }
+}
+
+void Plant_Pic::removecherry(){ //手动去除樱桃一定调用这个，不能直接set_pic
+    set_pic(0);
+    this->move(this->x()+20,this->y()+10);
+    disconnect(&movie,SIGNAL(frameChanged(int)),0,0);
+    return;
+}
+
+void Plant_Pic::endstop(int framenumber){   //用于只播放一次
+    if(framenumber==0){
+        set_pic(0);
+        this->move(this->x()+20,this->y()+10);
+        disconnect(&movie,SIGNAL(frameChanged(int)),0,0);
+        return;
     }
 }
 
