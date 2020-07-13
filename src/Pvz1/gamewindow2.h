@@ -1,4 +1,4 @@
-#ifndef gamewindow2_H
+﻿#ifndef gamewindow2_H
 #define gamewindow2_H
 
 #include <QWidget>
@@ -14,7 +14,7 @@ public:
     void sendslot();
 
 private:
-    QPushButton b4;
+    QPushButton b4,p1,p2,p3,p4,p5;
 
 
 signals:
