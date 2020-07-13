@@ -8,6 +8,10 @@
 #include<QLayout>
 #include<QtGui>
 
+#include "common.h"
+#include "plant.h"
+#include "shootpea.h"
+
 class Plant_Pic:public QLabel{
 public:
     Plant_Pic();
@@ -33,7 +37,11 @@ private:
     QPushButton b3,p0,p1,p2,p3,p4,p5,shovel,box[9][5];
     Plant_Pic pic[9][5];
     int cursor_type;
-    QSignalMapper signalmapper;
+    QSignalMapper signalmapper;\
+
+    QList<Plant*> plants;//记录场上的植物
+    QList<ShootPea*> shootpeas;//记录场上飞行的豌豆
+
 
 signals://自定义的一个信号，用于被发射（在sendsolt方法中被emit出去）
     void myslot();

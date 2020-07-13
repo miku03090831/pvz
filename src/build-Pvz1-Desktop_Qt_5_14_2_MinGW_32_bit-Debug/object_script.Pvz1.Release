@@ -1,0 +1,13 @@
+release/common.o
+release/gamewindow1.o
+release/gamewindow2.o
+release/main.o
+release/mainwindow.o
+release/plant.o
+release/shootpea.o
+release/qrc_res.o
+release/moc_common.o
+release/moc_gamewindow1.o
+release/moc_gamewindow2.o
+release/moc_mainwindow.o
+release/moc_plant.o
