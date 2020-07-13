@@ -5,6 +5,8 @@
 #include <QMovie>
 #include <QMouseEvent>
 
+
+#include "shootpea.h"
 #include "common.h"
 
 //植物基类
@@ -15,7 +17,7 @@ public:
     Plant(QWidget* parent=0);
     virtual void act();//这个包括攻击，产阳光等
     virtual void hit(int damage);//这个是被攻击
-    int x,y;
+    int col,row;
 };
 
 //豌豆射手

@@ -10,13 +10,14 @@
 class ShootPea:public Common
 {
 public:
-    ShootPea();
+    ShootPea(QWidget* parent=0);
     virtual void act();
-    int raw;//行数
+    int row;//行数
 };
 
 class Pea:public ShootPea
 {
+public:
     Pea(QWidget* parent=0);
     ~Pea();
     void act();

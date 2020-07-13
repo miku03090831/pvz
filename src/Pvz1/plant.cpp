@@ -1,4 +1,7 @@
 #include "plant.h"
+#include "gamewindow1.h"
+
+QList<ShootPea*> GameWindow1::shootpeas;
 
 Plant::Plant(QWidget* parent):Common(parent)
 {
@@ -35,7 +38,13 @@ void SinglePea::act()
         //    return;
         //}
         this->timer=this->interval;
-        //射出一个豌豆
+        //射出一颗豌豆
+        Pea *p = new Pea;
+        p->row=this->row;
+        GameWindow1::shootpeas.append(p);
+        //省略了win2的情况
+        //播放射出豌豆动画
+
         //关于豌豆的动画
     }
     else
@@ -65,7 +74,12 @@ void IcePea::act()
 //            return;
 //        }
         this->timer=this->interval;
-        //射出一个豌豆
+        //射出一颗豌豆
+        Ice *p = new Ice;
+        p->row=this->row;
+        GameWindow1::shootpeas.append(p);
+        //省略了win2的情况
+        //播放射出豌豆动画
     }
     else
         this->timer--;
@@ -94,7 +108,12 @@ void DoublePea::act()
 //            return;
 //        }
         this->timer=this->interval;
-        //射出一个豌豆
+        //射出一颗豌豆
+        Pea *p = new Pea;
+        p->row=this->row;
+        GameWindow1::shootpeas.append(p);
+        //省略了win2的情况
+        //播放射出豌豆动画
     }
     else if(this->timer==10)//为保证射出的两颗豌豆能够区分得开，需要让两颗豌豆保持一定的时间间隔
     {
@@ -104,6 +123,11 @@ void DoublePea::act()
 //        }
         this->timer--;
         //射出一颗豌豆
+        Pea *p = new Pea;
+        p->row=this->row;
+        GameWindow1::shootpeas.append(p);
+        //省略了win2的情况
+        //播放射出豌豆动画
     }
     else
         this->timer--;

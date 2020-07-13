@@ -36,6 +36,8 @@ public:
     void cursorchange(int cursortype);
     void plant1();
     void mousePressEvent(QMouseEvent *event);
+    static QList<Plant*> plants;//记录场上的植物
+    static QList<ShootPea*> shootpeas;//记录场上飞行的豌豆
 
 private:
     QPushButton b3,p0,p1,p2,p3,p4,p5,shovel,box[9][5];
@@ -43,8 +45,7 @@ private:
     int cursor_type;
     QSignalMapper signalmapper;\
 
-    QList<Plant*> plants;//记录场上的植物
-    QList<ShootPea*> shootpeas;//记录场上飞行的豌豆
+
 
 
 signals://自定义的一个信号，用于被发射（在sendsolt方法中被emit出去）
@@ -56,4 +57,3 @@ public slots:
 
 
 #endif // gamewindow1_H
-

@@ -1,6 +1,6 @@
 #include "shootpea.h"
 
-ShootPea::ShootPea()
+ShootPea::ShootPea(QWidget* parent): Common(parent)
 {
 
 }
@@ -10,7 +10,7 @@ void ShootPea::act()
 
 }
 
-Pea::Pea(QWidget* parent)
+Pea::Pea(QWidget* parent) : ShootPea(parent)
 {
     //播放动画
     this->show();
