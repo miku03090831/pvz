@@ -22,7 +22,8 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     plant.cpp \
-    shootpea.cpp
+    shootpea.cpp \
+    zombie.cpp
 
 HEADERS += \
     common.h \
@@ -30,7 +31,8 @@ HEADERS += \
     gamewindow2.h \
     mainwindow.h \
     plant.h \
-    shootpea.h
+    shootpea.h \
+    zombie.h
 
 FORMS += \
     mainwindow.ui
