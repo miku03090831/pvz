@@ -1,5 +1,7 @@
 #include "zombie.h"
+#include "gamewindow1.h"
 
+QList<Plant*> GameWindow1::plants;
 Zombie::Zombie(QWidget* parent):Common(parent)
 {
 
@@ -40,6 +42,21 @@ void SimpleZombie::act()
 {
     this->raise();//依旧是把僵尸显示在最顶层
     //遍历植物的qlist，看有没有吃的
+    Plant* p;
+    foreach(p,GameWindow1::plants)
+    {
+        if((qAbs(p->x() - this->x() -this->offset) <100) && (this->row == p->row) && (this->alive))
+        {
+            if(this->interval <=0 )
+            {
+                this->interval=20;
+                p->hit(1);
+                //播放僵尸吃植物的动画
+            }
+            this->interval--;
+            return;
+        }
+    }
     this->posX-=this->speed;
     this->move(this->posX,this->y());
 }

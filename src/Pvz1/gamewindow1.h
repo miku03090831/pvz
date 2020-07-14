@@ -11,6 +11,7 @@
 #include "common.h"
 #include "plant.h"
 #include "shootpea.h"
+#include "zombie.h"
 
 class Plant_Pic:public QLabel{
     Q_OBJECT
@@ -38,6 +39,8 @@ public:
     void mousePressEvent(QMouseEvent *event);
     static QList<Plant*> plants;//记录场上的植物
     static QList<ShootPea*> shootpeas;//记录场上飞行的豌豆
+    static QList<Zombie*> zombies;
+    static int ZombieNum[5];//记录场上每一行僵尸的数量
 
 private:
     QPushButton b3,p0,p1,p2,p3,p4,p5,shovel,box[9][5];
