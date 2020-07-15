@@ -78,8 +78,21 @@ GameWindow1::GameWindow1(QWidget *parent) :
 void GameWindow1::putplant(int place){  //点击格子时触发，用x*10+y表示位置，内容仅用于测试，需要填充
     int i=place/10;
     int j=place%10;
-    if(pic[i][j].gettype()==0)pic[i][j].set_pic(8);
-    else pic[i][j].set_pic(0);
+    switch(cursor_type){
+    case 0:break;
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+    case 6:if(pic[i][j].gettype()==0)
+                pic[i][j].set_pic(cursor_type);
+           cursorchange(0);
+           break;
+    case 7:if(pic[i][j].gettype()!=0)   pic[i][j].set_pic(0);cursorchange(0);break;
+    default:cursor_type=0;break;
+    }
+
     box[i][j].raise();
 }
 
