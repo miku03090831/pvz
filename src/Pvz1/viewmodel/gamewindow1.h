@@ -35,7 +35,13 @@ public:
     explicit GameWindow1(QWidget *parent = 0);
     void sendslot();
     void cursorchange(int cursortype);
-    void plant1();
+    void plant_sunflower();//太阳花
+    void plant_pea1();//豌豆射手
+    void plant_pea2();//寒冰射手
+    void plant_pea3();//双子射手
+    void plant_cherry();//樱桃炸弹
+    void plant_wallnut();//坚果墙
+    void show_shovel();//铲子
     void mousePressEvent(QMouseEvent *event);
     static QList<Plant*> plants;//记录场上的植物
     static QList<ShootPea*> shootpeas;//记录场上飞行的豌豆

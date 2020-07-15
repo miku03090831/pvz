@@ -64,7 +64,13 @@ GameWindow1::GameWindow1(QWidget *parent) :
     //把b3按钮和sendsolt方法绑定，就是说按下按钮的时候会调用下面的sendslot方法，执行emit mysolt()，就是把这个信号发送出去的意思
     //在主窗口的30行的代码意思就是，一旦gamewin1发出了mysolt信号，就调用主窗口的back1函数
     connect(&b3,&QPushButton::clicked,this,&GameWindow1::sendslot);
-    connect(&p1,&QPushButton::clicked,this,&GameWindow1::plant1);
+    connect(&p0,&QPushButton::clicked,this,&GameWindow1::plant_sunflower);
+    connect(&p1,&QPushButton::clicked,this,&GameWindow1::plant_pea1);
+    connect(&p2,&QPushButton::clicked,this,&GameWindow1::plant_pea2);
+    connect(&p3,&QPushButton::clicked,this,&GameWindow1::plant_pea3);
+    connect(&p4,&QPushButton::clicked,this,&GameWindow1::plant_cherry);
+    connect(&p5,&QPushButton::clicked,this,&GameWindow1::plant_wallnut);
+    connect(&shovel,&QPushButton::clicked,this,&GameWindow1::show_shovel);
     connect(&signalmapper,SIGNAL(mapped(int)),this,SLOT(putplant(int)));
     //用于响应点击
 }
@@ -77,7 +83,31 @@ void GameWindow1::putplant(int place){  //点击格子时触发，用x*10+y表�
     box[i][j].raise();
 }
 
-void GameWindow1::plant1(){ //点击植物栏时触发，只写了一个，内容仅用于测试，需要补充
+void GameWindow1::plant_sunflower(){
+    cursorchange(1);
+}
+
+void GameWindow1::plant_pea1(){
+    cursorchange(2);
+}
+
+void GameWindow1::plant_pea2(){
+    cursorchange(3);
+}
+
+void GameWindow1::plant_pea3(){
+    cursorchange(4);
+}
+
+void GameWindow1::plant_cherry(){
+    cursorchange(5);
+}
+
+void GameWindow1::plant_wallnut(){
+    cursorchange(6);
+}
+
+void GameWindow1::show_shovel(){
     cursorchange(7);
 }
 
