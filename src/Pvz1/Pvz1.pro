@@ -16,26 +16,26 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    common.cpp \
-    gamewindow1.cpp \
-    gamewindow2.cpp \
-    main.cpp \
-    mainwindow.cpp \
-    plant.cpp \
-    shootpea.cpp \
-    zombie.cpp
+    common/common.cpp \
+    viewmodel/gamewindow1.cpp \
+    viewmodel/gamewindow2.cpp \
+    app/main.cpp \
+    model/mainwindow.cpp \
+    common/plant.cpp \
+    common/shootpea.cpp \
+    common/zombie.cpp
 
 HEADERS += \
-    common.h \
-    gamewindow1.h \
-    gamewindow2.h \
-    mainwindow.h \
-    plant.h \
-    shootpea.h \
-    zombie.h
+    common/common.h \
+    viewmodel/gamewindow1.h \
+    viewmodel/gamewindow2.h \
+    model/mainwindow.h \
+    common/plant.h \
+    common/shootpea.h \
+    common/zombie.h
 
 FORMS += \
-    mainwindow.ui
+    model/mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
