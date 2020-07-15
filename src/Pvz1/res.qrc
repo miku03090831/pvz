@@ -19,5 +19,40 @@
         <file>res/sun_flower.png</file>
         <file>res/Sunflower.gif</file>
         <file>res/wallnut_box.png</file>
+        <file>res/Boom.gif</file>
+        <file>res/BucketheadZombie.gif</file>
+        <file>res/BucketheadZombieAttack.gif</file>
+        <file>res/cherry_cursor.png</file>
+        <file>res/CherryBomb.gif</file>
+        <file>res/CherryBomb2.gif</file>
+        <file>res/ConeheadZombie.gif</file>
+        <file>res/ConeheadZombieAttack.gif</file>
+        <file>res/normalpea.png</file>
+        <file>res/PeaBulletHit.gif</file>
+        <file>res/PeaBulletHit.png</file>
+        <file>res/plant_box.png</file>
+        <file>res/Plant201.png</file>
+        <file>res/Plant202.png</file>
+        <file>res/Repeater.gif</file>
+        <file>res/repeater_cursor.png</file>
+        <file>res/SeedBank.png</file>
+        <file>res/seedbox.png</file>
+        <file>res/Shovel_hi_res.png</file>
+        <file>res/snow_cursor.png</file>
+        <file>res/SnowPea.gif</file>
+        <file>res/snowpea.png</file>
+        <file>res/sunflower_cursor.png</file>
+        <file>res/WallNut.gif</file>
+        <file>res/Wallnut_cracked1.gif</file>
+        <file>res/Wallnut_cracked2.gif</file>
+        <file>res/wallnut_cursor.png</file>
+        <file>res/Zombie.gif</file>
+        <file>res/Zombie2.gif</file>
+        <file>res/Zombie3.gif</file>
+        <file>res/ZombieAttack.gif</file>
+        <file>res/ZombieDie.gif</file>
+        <file>res/ZombieHead.gif</file>
+        <file>res/ZombieLostHead.gif</file>
+        <file>res/ZombieLostHeadAttack.gif</file>
     </qresource>
 </RCC>
