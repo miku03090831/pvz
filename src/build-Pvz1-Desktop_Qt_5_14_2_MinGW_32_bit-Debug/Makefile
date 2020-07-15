@@ -222,7 +222,6 @@ Makefile: ../Pvz1/Pvz1.pro D:/Qt/5.14.2/mingw73_32/mkspecs/win32-g++/qmake.conf 
 		D:/Qt/5.14.2/mingw73_32/mkspecs/features/qt_config.prf \
 		D:/Qt/5.14.2/mingw73_32/mkspecs/win32-g++/qmake.conf \
 		D:/Qt/5.14.2/mingw73_32/mkspecs/features/spec_post.prf \
-		.qmake.stash \
 		D:/Qt/5.14.2/mingw73_32/mkspecs/features/exclusive_builds.prf \
 		D:/Qt/5.14.2/mingw73_32/mkspecs/features/toolchain.prf \
 		D:/Qt/5.14.2/mingw73_32/mkspecs/features/default_pre.prf \
@@ -251,6 +250,7 @@ Makefile: ../Pvz1/Pvz1.pro D:/Qt/5.14.2/mingw73_32/mkspecs/win32-g++/qmake.conf 
 		D:/Qt/5.14.2/mingw73_32/lib/Qt5Gui.prl \
 		D:/Qt/5.14.2/mingw73_32/lib/Qt5Core.prl \
 		D:/Qt/5.14.2/mingw73_32/lib/qtmain.prl \
+		.qmake.stash \
 		D:/Qt/5.14.2/mingw73_32/mkspecs/features/build_pass.prf \
 		../Pvz1/res.qrc
 	$(QMAKE) -o Makefile ..\Pvz1\Pvz1.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
@@ -406,7 +406,6 @@ D:/Qt/5.14.2/mingw73_32/mkspecs/features/qt_functions.prf:
 D:/Qt/5.14.2/mingw73_32/mkspecs/features/qt_config.prf:
 D:/Qt/5.14.2/mingw73_32/mkspecs/win32-g++/qmake.conf:
 D:/Qt/5.14.2/mingw73_32/mkspecs/features/spec_post.prf:
-.qmake.stash:
 D:/Qt/5.14.2/mingw73_32/mkspecs/features/exclusive_builds.prf:
 D:/Qt/5.14.2/mingw73_32/mkspecs/features/toolchain.prf:
 D:/Qt/5.14.2/mingw73_32/mkspecs/features/default_pre.prf:
@@ -435,6 +434,7 @@ D:/Qt/5.14.2/mingw73_32/lib/Qt5Widgets.prl:
 D:/Qt/5.14.2/mingw73_32/lib/Qt5Gui.prl:
 D:/Qt/5.14.2/mingw73_32/lib/Qt5Core.prl:
 D:/Qt/5.14.2/mingw73_32/lib/qtmain.prl:
+.qmake.stash:
 D:/Qt/5.14.2/mingw73_32/mkspecs/features/build_pass.prf:
 ../Pvz1/res.qrc:
 qmake: FORCE

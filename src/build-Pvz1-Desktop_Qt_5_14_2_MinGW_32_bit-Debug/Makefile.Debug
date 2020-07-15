@@ -138,12 +138,60 @@ compiler_rcc_clean:
 	-$(DEL_FILE) debug\qrc_res.cpp
 debug/qrc_res.cpp: ../Pvz1/res.qrc \
 		D:/Qt/5.14.2/mingw73_32/bin/rcc.exe \
-		../Pvz1/res/menu.png \
-		../Pvz1/res/background1.png \
 		../Pvz1/res/quick.png \
+		../Pvz1/res/background1.jpg \
+		../Pvz1/res/PeaBulletHit.png \
+		../Pvz1/res/background2.png \
+		../Pvz1/res/Shovel_hi_res.png \
+		../Pvz1/res/ZombieAttack.gif \
+		../Pvz1/res/Boom.gif \
+		../Pvz1/res/Plant202.png \
+		../Pvz1/res/ZombieLostHead.gif \
+		../Pvz1/res/Peashooter.gif \
+		../Pvz1/res/Shovel.png \
+		../Pvz1/res/seedbox.png \
+		../Pvz1/res/back_btn.png \
+		../Pvz1/res/background1.png \
+		../Pvz1/res/CherryBomb.gif \
+		../Pvz1/res/snowpeanut_box.png \
+		../Pvz1/res/Plant201.png \
+		../Pvz1/res/normalpea.png \
+		../Pvz1/res/sunflower_cursor.png \
+		../Pvz1/res/Zombie3.gif \
+		../Pvz1/res/ZombieLostHeadAttack.gif \
+		../Pvz1/res/peanut_box.png \
+		../Pvz1/res/ZombieHead.gif \
+		../Pvz1/res/Sunflower.gif \
+		../Pvz1/res/Wallnut_cracked2.gif \
+		../Pvz1/res/cherry_box.png \
+		../Pvz1/res/ConeheadZombieAttack.gif \
+		../Pvz1/res/menu.png \
+		../Pvz1/res/Zombie2.gif \
+		../Pvz1/res/Repeater.gif \
 		../Pvz1/res/mode.png \
-		../Pvz1/res/quit.png \
-		../Pvz1/res/background1.jpg
+		../Pvz1/res/cherry_cursor.png \
+		../Pvz1/res/repeater_box.png \
+		../Pvz1/res/Wallnut_cracked1.gif \
+		../Pvz1/res/BucketheadZombie.gif \
+		../Pvz1/res/shovel_box.png \
+		../Pvz1/res/ConeheadZombie.gif \
+		../Pvz1/res/snowpea.png \
+		../Pvz1/res/repeater_cursor.png \
+		../Pvz1/res/wallnut_box.png \
+		../Pvz1/res/sun_flower.png \
+		../Pvz1/res/SeedBank.png \
+		../Pvz1/res/ZombieDie.gif \
+		../Pvz1/res/PeaBulletHit.gif \
+		../Pvz1/res/wallnut_cursor.png \
+		../Pvz1/res/CherryBomb2.gif \
+		../Pvz1/res/snow_cursor.png \
+		../Pvz1/res/Zombie.gif \
+		../Pvz1/res/SnowPea.gif \
+		../Pvz1/res/plant_box.png \
+		../Pvz1/res/BucketheadZombieAttack.gif \
+		../Pvz1/res/peanut_cursor.png \
+		../Pvz1/res/WallNut.gif \
+		../Pvz1/res/quit.png
 	D:\Qt\5.14.2\mingw73_32\bin\rcc.exe -name res ..\Pvz1\res.qrc -o debug\qrc_res.cpp
 
 compiler_moc_predefs_make_all: debug/moc_predefs.h
