@@ -62,6 +62,7 @@ MainWindow::~MainWindow()
 void MainWindow::game1()
 {
     gamewin1.show();
+    gamewin1.starttimer();
     this->hide();
 }
 

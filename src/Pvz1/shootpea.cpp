@@ -1,4 +1,4 @@
-#include "shootpea.h"
+﻿#include "shootpea.h"
 #include "gamewindow1.h"
 //QList<Zombie*> GameWindow1::zombies;
 
@@ -72,5 +72,4 @@ Ice::~Ice()
 {
 
 }
-
 

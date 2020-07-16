@@ -32,5 +32,24 @@
         <file>res/Shovel.png</file>
         <file>res/CherryBomb.gif</file>
         <file>res/CherryBomb2.gif</file>
+        <file>res/normalpea.png</file>
+        <file>res/snowpea.png</file>
+        <file>res/ZombieAttack.gif</file>
+        <file>res/ZombieDie.gif</file>
+        <file>res/ZombieHead.gif</file>
+        <file>res/ZombieLostHead.gif</file>
+        <file>res/ZombieLostHeadAttack.gif</file>
+        <file>res/Zombie.gif</file>
+        <file>res/BucketheadZombie.gif</file>
+        <file>res/BucketheadZombieAttack.gif</file>
+        <file>res/ConeheadZombie.gif</file>
+        <file>res/ConeheadZombieAttack.gif</file>
+        <file>res/PeaBulletHit.png</file>
+        <file>res/Zombie2.gif</file>
+        <file>.gitignore</file>
+        <file>res/BurnDie.gif</file>
+    </qresource>
+    <qresource prefix="/">
+        <file>res/PeaBulletHit.png</file>
     </qresource>
 </RCC>

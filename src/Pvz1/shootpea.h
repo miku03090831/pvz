@@ -1,4 +1,4 @@
-#ifndef SHOOTPEA_H
+﻿#ifndef SHOOTPEA_H
 #define SHOOTPEA_H
 
 #include <QWidget>

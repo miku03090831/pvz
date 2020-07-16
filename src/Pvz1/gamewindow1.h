@@ -1,4 +1,5 @@
-﻿#ifndef gamewindow1_H
+﻿#pragma once
+#ifndef gamewindow1_H
 #define gamewindow1_H
 
 #include <QWidget>
@@ -12,20 +13,9 @@
 #include "plant.h"
 #include "shootpea.h"
 #include "zombie.h"
-
-class Plant_Pic:public QLabel{
-    Q_OBJECT
-public:
-    Plant_Pic();
-    int set_pic(int type);
-    void removecherry();
-    int gettype();
-private:
-    int type=0;
-    QMovie movie;
-public slots:
-    void endstop(int framenumber);
-};
+#include"plant_pic.h"
+#include"zombie_pic.h"
+#include"pea_pic.h"
 
 
 class GameWindow1 : public QWidget
@@ -36,19 +26,22 @@ public:
     void sendslot();
     void cursorchange(int cursortype);
     void plant1();
+    void starttimer();
     void mousePressEvent(QMouseEvent *event);
+    QPixmap normalpea, snowpea, peahit; //两种豆子的图像及击中图像
     static QList<Plant*> plants;//记录场上的植物
     static QList<ShootPea*> shootpeas;//记录场上飞行的豌豆
     static QList<Zombie*> zombies;
     static int ZombieNum[5];//记录场上每一行僵尸的数量
+    Snow_Pea* pp;
 
 private:
     QPushButton b3,p0,p1,p2,p3,p4,p5,shovel,box[9][5];
     Plant_Pic pic[9][5];
     int cursor_type;
-    QSignalMapper signalmapper;\
-
-
+    QSignalMapper signalmapper;
+    QSignalMapper framemapper;
+    QTimeLine timer;
 
 
 signals://自定义的一个信号，用于被发射（在sendsolt方法中被emit出去）
@@ -56,7 +49,10 @@ signals://自定义的一个信号，用于被发射（在sendsolt方法中被em
 
 public slots:
     void putplant(int place);
+    void timeevent(int frame);  //每个时间间隔进行的操作
+
 };
+
 
 
 #endif // gamewindow1_H

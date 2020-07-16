@@ -21,18 +21,24 @@ SOURCES += \
     gamewindow2.cpp \
     main.cpp \
     mainwindow.cpp \
+    pea_pic.cpp \
     plant.cpp \
+    plant_pic.cpp \
     shootpea.cpp \
-    zombie.cpp
+    zombie.cpp \
+    zombie_pic.cpp
 
 HEADERS += \
     common.h \
     gamewindow1.h \
     gamewindow2.h \
     mainwindow.h \
+    pea_pic.h \
     plant.h \
+    plant_pic.h \
     shootpea.h \
-    zombie.h
+    zombie.h \
+    zombie_pic.h
 
 FORMS += \
     mainwindow.ui
