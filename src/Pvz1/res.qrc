@@ -49,7 +49,4 @@
         <file>.gitignore</file>
         <file>res/BurnDie.gif</file>
     </qresource>
-    <qresource prefix="/">
-        <file>res/PeaBulletHit.png</file>
-    </qresource>
 </RCC>

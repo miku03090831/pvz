@@ -17,6 +17,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     common/common.cpp \
+    view/pea_pic.cpp \
+    view/plant_pic.cpp \
+    view/zombie_pic.cpp \
     viewmodel/gamewindow1.cpp \
     viewmodel/gamewindow2.cpp \
     app/main.cpp \
@@ -27,6 +30,9 @@ SOURCES += \
 
 HEADERS += \
     common/common.h \
+    view/pea_pic.h \
+    view/plant_pic.h \
+    view/zombie_pic.h \
     viewmodel/gamewindow1.h \
     viewmodel/gamewindow2.h \
     model/mainwindow.h \

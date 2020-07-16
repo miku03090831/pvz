@@ -63,6 +63,7 @@ void MainWindow::game1()
 {
     gamewin1.show();
     flag=1;
+    gamewin1.starttimer(); //计时器开始计时
     this->hide();
 }
 

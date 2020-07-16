@@ -1,4 +1,4 @@
-#ifndef gamewindow1_H
+﻿#ifndef gamewindow1_H
 #define gamewindow1_H
 
 #include <QWidget>
@@ -8,13 +8,13 @@
 #include<QLayout>
 #include<QtGui>
 
-#include "common.h"
-#include "plant.h"
-#include "shootpea.h"
-#include "zombie.h"
-#include"plant_pic.h"
-#include"zombie_pic.h"
-#include"pea_pic.h"
+#include "../common/common.h"
+#include "../common/plant.h"
+#include "../common/shootpea.h"
+#include "../common/zombie.h"
+#include"../view/plant_pic.h"
+#include"../view/zombie_pic.h"
+#include"../view/pea_pic.h"
 
 
 class GameWindow1 : public QWidget

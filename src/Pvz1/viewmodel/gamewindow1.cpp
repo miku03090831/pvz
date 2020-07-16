@@ -57,7 +57,10 @@ GameWindow1::GameWindow1(QWidget *parent) :
         }
     }
 
-   //等待设置，需要先设置植物栏，准备放在植物栏右侧
+
+    timer.setDuration(1000);    //设置的时间轴，1000ms每次
+    timer.setLoopCount(0);  //无限循环
+    timer.setFrameRange(0,40);  //每1000ms分为40帧
 
     //connect的四个参数分别是：1.信号发出者 2.发生的事件 3.信号接受者 4.要执行的动作，也就是槽函数
     //我们返回主窗口分为两步：1.点击b3发出一个mysolt信号 2.主窗口收到这个信号之后，调用主窗口的back1方法来实现返回主窗口（下面两行注释详细说明）
@@ -73,6 +76,9 @@ GameWindow1::GameWindow1(QWidget *parent) :
     connect(&shovel,&QPushButton::clicked,this,&GameWindow1::show_shovel);
     connect(&signalmapper,SIGNAL(mapped(int)),this,SLOT(putplant(int)));
     //用于响应点击
+    normalpea.load(":/image/res/normalpea.png");
+    snowpea.load(":/image/res/snowpea.png");
+    peahit.load(":/image/res/PeaBulletHit.png");    //三个豌豆的图片
 }
 
 void GameWindow1::putplant(int place){  //点击格子时触发，用x*10+y表示位置，内容仅用于测试，需要填充
@@ -189,87 +195,7 @@ void GameWindow1::mousePressEvent(QMouseEvent *event){  //用于取消种植植�
     }else return ;
 }
 
-Plant_Pic::Plant_Pic(){
-    this->hide();
-    this->setMovie(&movie);
+void GameWindow1::starttimer(){
+    this->timer.start();
 }
-
-int Plant_Pic::set_pic(int type){   //显示植物，0为不显示，之后依次按照植物栏每种植物
-    switch (type) {
-    case 0:
-        movie.stop();
-        this->hide();
-        this->type=0;
-        return 0;
-    case 1:
-        movie.setFileName(":/image/res/Sunflower.gif"); //太阳花
-        movie.start();
-        this->type=1;
-        this->show();
-        return 0;
-    case 2:
-        movie.setFileName(":/image/res/Peashooter.gif");    //豌豆
-        movie.start();
-        this->type=2;
-        this->show();
-        return 0;
-    case 3:
-        movie.setFileName(":/image/res/SnowPea.gif");   //寒冰
-        movie.start();
-        this->type=3;
-        this->show();
-        return 0;
-    case 4:
-        movie.setFileName(":/image/res/Repeater.gif");  //双发
-        movie.start();
-        this->type=4;
-        this->show();
-        return 0;
-    case 5:
-        movie.setFileName(":/image/res/CherryBomb2.gif");   //炸弹
-        movie.start();
-        this->move(this->x()-20,this->y()-10);
-        connect(&movie,SIGNAL(frameChanged(int)),this,SLOT(endstop(int)));  //用于播放一次后消失
-        this->type=5;
-        this->show();
-        return 0;
-    case 6:
-        movie.setFileName(":/image/res/WallNut.gif");   //坚果墙
-        movie.start();
-        this->type=6;
-        this->show();
-        return 0;
-    case 7:
-        movie.setFileName(":/image/res/Wallnut_cracked1.gif");  //损毁坚果墙
-        movie.start();
-        this->type=7;
-        this->show();
-        return 0;
-    case 8:
-        movie.setFileName(":/image/res/Wallnut_cracked2.gif");  //损毁坚果墙2
-        movie.start();
-        this->type=8;
-        this->show();
-        return 0;
-    }
-}
-
-void Plant_Pic::removecherry(){ //手动去除樱桃一定调用这个，不能直接set_pic
-    set_pic(0);
-    this->move(this->x()+20,this->y()+10);
-    disconnect(&movie,SIGNAL(frameChanged(int)),0,0);
-    return;
-}
-
-void Plant_Pic::endstop(int framenumber){   //用于只播放一次
-    if(framenumber==0){
-        set_pic(0);
-        this->move(this->x()+20,this->y()+10);
-        disconnect(&movie,SIGNAL(frameChanged(int)),0,0);
-        return;
-    }
-}
-
-int Plant_Pic::gettype(){
-    return type;
-}
+void GameWindow1::timeevent(int frame){}
