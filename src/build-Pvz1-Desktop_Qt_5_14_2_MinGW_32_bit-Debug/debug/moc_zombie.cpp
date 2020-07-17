@@ -161,5 +161,145 @@ int SimpleZombie::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     _id = Zombie::qt_metacall(_c, _id, _a);
     return _id;
 }
+struct qt_meta_stringdata_ConeheadZombie_t {
+    QByteArrayData data[1];
+    char stringdata0[15];
+};
+#define QT_MOC_LITERAL(idx, ofs, len) \
+    Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
+    qptrdiff(offsetof(qt_meta_stringdata_ConeheadZombie_t, stringdata0) + ofs \
+        - idx * sizeof(QByteArrayData)) \
+    )
+static const qt_meta_stringdata_ConeheadZombie_t qt_meta_stringdata_ConeheadZombie = {
+    {
+QT_MOC_LITERAL(0, 0, 14) // "ConeheadZombie"
+
+    },
+    "ConeheadZombie"
+};
+#undef QT_MOC_LITERAL
+
+static const uint qt_meta_data_ConeheadZombie[] = {
+
+ // content:
+       8,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       0,    0, // methods
+       0,    0, // properties
+       0,    0, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       0,       // signalCount
+
+       0        // eod
+};
+
+void ConeheadZombie::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+{
+    Q_UNUSED(_o);
+    Q_UNUSED(_id);
+    Q_UNUSED(_c);
+    Q_UNUSED(_a);
+}
+
+QT_INIT_METAOBJECT const QMetaObject ConeheadZombie::staticMetaObject = { {
+    QMetaObject::SuperData::link<Zombie::staticMetaObject>(),
+    qt_meta_stringdata_ConeheadZombie.data,
+    qt_meta_data_ConeheadZombie,
+    qt_static_metacall,
+    nullptr,
+    nullptr
+} };
+
+
+const QMetaObject *ConeheadZombie::metaObject() const
+{
+    return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
+}
+
+void *ConeheadZombie::qt_metacast(const char *_clname)
+{
+    if (!_clname) return nullptr;
+    if (!strcmp(_clname, qt_meta_stringdata_ConeheadZombie.stringdata0))
+        return static_cast<void*>(this);
+    return Zombie::qt_metacast(_clname);
+}
+
+int ConeheadZombie::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+{
+    _id = Zombie::qt_metacall(_c, _id, _a);
+    return _id;
+}
+struct qt_meta_stringdata_BucketZombie_t {
+    QByteArrayData data[1];
+    char stringdata0[13];
+};
+#define QT_MOC_LITERAL(idx, ofs, len) \
+    Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
+    qptrdiff(offsetof(qt_meta_stringdata_BucketZombie_t, stringdata0) + ofs \
+        - idx * sizeof(QByteArrayData)) \
+    )
+static const qt_meta_stringdata_BucketZombie_t qt_meta_stringdata_BucketZombie = {
+    {
+QT_MOC_LITERAL(0, 0, 12) // "BucketZombie"
+
+    },
+    "BucketZombie"
+};
+#undef QT_MOC_LITERAL
+
+static const uint qt_meta_data_BucketZombie[] = {
+
+ // content:
+       8,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       0,    0, // methods
+       0,    0, // properties
+       0,    0, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       0,       // signalCount
+
+       0        // eod
+};
+
+void BucketZombie::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+{
+    Q_UNUSED(_o);
+    Q_UNUSED(_id);
+    Q_UNUSED(_c);
+    Q_UNUSED(_a);
+}
+
+QT_INIT_METAOBJECT const QMetaObject BucketZombie::staticMetaObject = { {
+    QMetaObject::SuperData::link<Zombie::staticMetaObject>(),
+    qt_meta_stringdata_BucketZombie.data,
+    qt_meta_data_BucketZombie,
+    qt_static_metacall,
+    nullptr,
+    nullptr
+} };
+
+
+const QMetaObject *BucketZombie::metaObject() const
+{
+    return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
+}
+
+void *BucketZombie::qt_metacast(const char *_clname)
+{
+    if (!_clname) return nullptr;
+    if (!strcmp(_clname, qt_meta_stringdata_BucketZombie.stringdata0))
+        return static_cast<void*>(this);
+    return Zombie::qt_metacast(_clname);
+}
+
+int BucketZombie::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+{
+    _id = Zombie::qt_metacall(_c, _id, _a);
+    return _id;
+}
 QT_WARNING_POP
 QT_END_MOC_NAMESPACE
