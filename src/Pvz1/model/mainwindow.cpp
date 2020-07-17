@@ -63,6 +63,8 @@ void MainWindow::game1()
 {
     flag=1;
     gamewin1.show();
+    flag=1;
+    gamewin1.starttimer(); //计时器开始计时
     this->hide();
 }
 
@@ -77,6 +79,7 @@ void MainWindow::game2()
 {
     flag=2;
     gamewin2.show();
+    flag=2;
     this->hide();
 }
 void MainWindow::back2()

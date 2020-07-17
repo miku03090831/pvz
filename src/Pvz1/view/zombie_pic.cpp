@@ -27,9 +27,12 @@ Zombie_Pic::Zombie_Pic(QWidget* parent, int y, int type, int interval, int movet
     movie.start();
     this->movetime=movetime;
     this->move(500,20+98*y);
+<<<<<<< HEAD
     this->dead=0;
     this->del=0;
     connect(&movie,SIGNAL(frameChanged()),this,SLOT(frameevent()));
+=======
+>>>>>>> 8368bf716d1edf349ad04e95cc3416196e5914d0
     this->show();
 }
 
@@ -89,7 +92,10 @@ void Zombie_Pic::Zombie_Attack(){   //改变为攻击状态
 
 void Zombie_Pic::Zombie_Die(){  //死亡，死亡时僵尸应该处于LostHead状态
     movie.stop();
+<<<<<<< HEAD
     this->dead=1;
+=======
+>>>>>>> 8368bf716d1edf349ad04e95cc3416196e5914d0
     movie.setFileName(":/image/res/ZombieDie.gif");
     movie.start();
 }
@@ -116,19 +122,26 @@ void Zombie_Pic::Zombie_LostHead(){ //僵尸头掉了，保持原来的动画状
     }
     movie.start();
     headmovie.start();
+<<<<<<< HEAD
     connect(&headmovie,SIGNAL(frameChanged()),this,SLOT(headevent()));
+=======
+>>>>>>> 8368bf716d1edf349ad04e95cc3416196e5914d0
     this->show();
     headlabel.show();
 }
 
 void Zombie_Pic::Zombie_Burn(){ //被烧死，之后会添加消除图像的函数
     movie.stop();
+<<<<<<< HEAD
     this->dead=1;
+=======
+>>>>>>> 8368bf716d1edf349ad04e95cc3416196e5914d0
     movie.setFileName(":/image/res/BurnDie.gif");
     movie.start();
 }
 
 Zombie_Pic::~Zombie_Pic(){}
+<<<<<<< HEAD
 
 void Zombie_Pic::frameevent(int framenum){
     if(this->dead&&this->movie.frameCount()-1==framenum){
@@ -144,3 +157,5 @@ void Zombie_Pic::headevent(int framenum){
         disconnect(&headmovie,0,0,0);
     }
 }
+=======
+>>>>>>> 8368bf716d1edf349ad04e95cc3416196e5914d0

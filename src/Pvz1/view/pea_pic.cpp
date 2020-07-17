@@ -5,7 +5,10 @@ Pea_Pic::Pea_Pic(GameWindow1 *parent, int x, int y, int speed){ //分别为父�
     this->setParent(parent);
     this->move(115+81*x,100+98*y);
     this->speed=speed;
+<<<<<<< HEAD
     this->del=0;
+=======
+>>>>>>> 8368bf716d1edf349ad04e95cc3416196e5914d0
 }
 
 void Pea_Pic::Pea_Move(){   //豌豆向前飞
@@ -17,7 +20,10 @@ void Pea_Pic::Pea_Move(){   //豌豆向前飞
 
 void Snow_Pea::Pea_Hit(){   //击中的图像
     this->raise();
+<<<<<<< HEAD
     this->del=1;
+=======
+>>>>>>> 8368bf716d1edf349ad04e95cc3416196e5914d0
     this->setPixmap(((GameWindow1*)(this->parent()))->peahit);
     this->show();
     return ;
@@ -26,7 +32,10 @@ void Snow_Pea::Pea_Hit(){   //击中的图像
 void Normal_Pea::Pea_Hit(){ //击中的图像
     this->raise();
     this->setPixmap(((GameWindow1*)(this->parent()))->peahit);
+<<<<<<< HEAD
     this->del=1;
+=======
+>>>>>>> 8368bf716d1edf349ad04e95cc3416196e5914d0
     this->show();
     return ;
 }
