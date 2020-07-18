@@ -20,10 +20,7 @@ public:
     void Zombie_LostHead(); //僵尸头掉了，保持原来的动画状态（行走/攻击）
     void Zombie_Froze();    //等着之后写
     void Zombie_Burn(); //被烧死，之后会添加消除图像的函数
-<<<<<<< HEAD
     int del;    //=1表示应该删除
-=======
->>>>>>> 8368bf716d1edf349ad04e95cc3416196e5914d0
 private:
     QMovie movie;
     QLabel headlabel;
@@ -33,16 +30,12 @@ private:
     int type;
     int attack;
     int interval;
-<<<<<<< HEAD
     int movetime;
     int dead;
+    int losthead;
 public slots:
     void frameevent(int framenum);
     void headevent(int framenum);
-=======
-    int losthead;
-    int movetime;
->>>>>>> 8368bf716d1edf349ad04e95cc3416196e5914d0
 };
 
 #endif // ZOMBIE_PIC_H
