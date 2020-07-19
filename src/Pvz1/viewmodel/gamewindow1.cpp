@@ -53,6 +53,10 @@ GameWindow1::GameWindow1(QWidget *parent) :
     connect(zombieMove_timer1,SIGNAL(timeout()),this,SLOT(move_zombie()));
     zombieMove_timer1->start(1000);//timer设定每1s进行一次僵尸动画的位置运动
 
+    QTimer *zombieGen_timer1=new QTimer(this);//僵尸生成计时器
+    connect(zombieGen_timer1,SIGNAL(timeout()),this,SLOT(generate_zombie()));
+    zombieGen_timer1->start(10000);
+
     //connect的四个参数分别是：1.信号发出者 2.发生的事件 3.信号接受者 4.要执行的动作，也就是槽函数
     //我们返回主窗口分为两步：1.点击b3发出一个mysolt信号 2.主窗口收到这个信号之后，调用主窗口的back1方法来实现返回主窗口（下面两行注释详细说明）
     //把b3按钮和sendsolt方法绑定，就是说按下按钮的时候会调用下面的sendslot方法，执行emit mysolt()，就是把这个信号发送出去的意思
@@ -170,6 +174,22 @@ void GameWindow1::starttimer(){
 void GameWindow1::move_zombie(){
     for(int i=0;i<z_pic.size();i++){
         z_pic[i]->Zombie_Walk();
-        z_pic[i]->Zombie_Move(5);
-    }//对zombie_pic list中所有僵尸执行运动，默认步长为5
+        z_pic[i]->Zombie_Move(20);
+    }//对zombie_pic list中所有僵尸执行运动，默认步长为20
+}
+
+void GameWindow1::generate_zombie(){
+    int type, row;
+    for(int i=0;i<1;i++){
+        type=Gen_Rand(zombie_G_mode);
+        row=Gen_Rand(5);
+        z_pic.append(new Zombie_Pic(this,row,type,1,1));
+    }
+}
+
+int GameWindow1::Gen_Rand(int upper){
+    if(upper<=0)
+        return 0;
+    qsrand(QTime(0,0,0).secsTo(QTime::currentTime()));
+    return qrand()%upper;
 }

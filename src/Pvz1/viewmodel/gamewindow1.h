@@ -7,6 +7,7 @@
 #include<QLabel>
 #include<QLayout>
 #include<QtGui>
+#include<QtGlobal>
 
 #include "../common/common.h"
 #include "../common/plant.h"
@@ -27,6 +28,7 @@ public:
     void cursorchange(int cursortype);
     void plant1();
     void starttimer();
+    int Gen_Rand(int upper);
     Sun_Pic *sp;
     void show_shovel();//铲子
     void mousePressEvent(QMouseEvent *event);
@@ -41,6 +43,8 @@ private:
     QPushButton b3,shovel,box[9][5];
     Plant_Pic pic[9][5];
     int cursor_type;
+    int zombie_G_mode=3;
+    int zombie_G_speed=3;//G_mode是产生僵尸类型的限制，G_speed是产生僵尸的速度限制
     QSignalMapper signalmapper;
     QTimeLine timer;
     QLabel plantbox;
@@ -55,6 +59,7 @@ public slots:
     void putplant(int place);
     void seedbox_clicked(int planttype);
     void move_zombie();
+    void generate_zombie();//僵尸生成函数
 };
 
 
