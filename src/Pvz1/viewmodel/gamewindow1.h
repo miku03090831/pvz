@@ -34,6 +34,7 @@ public:
     static QList<Plant*> plants;//记录场上的植物
     static QList<ShootPea*> shootpeas;//记录场上飞行的豌豆
     static QList<Zombie*> zombies;
+    static QList<Zombie_Pic*> z_pic;
     static int ZombieNum[5];//记录场上每一行僵尸的数量
 
 private:
@@ -53,7 +54,7 @@ signals://自定义的一个信号，用于被发射（在sendsolt方法中被em
 public slots:
     void putplant(int place);
     void seedbox_clicked(int planttype);
-
+    void move_zombie();
 };
 
 

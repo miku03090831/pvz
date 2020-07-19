@@ -37,11 +37,7 @@ MainWindow::MainWindow(QWidget *parent)
     b5.setParent(this);
     b5.setGeometry(627,440,123,63);  //位置大小
 
-
-
     this->setWindowTitle("main");
-
-
 
     connect(&b5,&QPushButton::clicked,this,&MainWindow::close);
     connect(&b1,&QPushButton::clicked,this,&MainWindow::game1);

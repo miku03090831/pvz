@@ -1,6 +1,8 @@
 ﻿#include "gamewindow1.h"
 /*建议可以尝试填充button的响应函数*/
 
+QList<Zombie_Pic*> GameWindow1::z_pic;
+
 GameWindow1::GameWindow1(QWidget *parent) :
     QWidget(parent)
 {
@@ -41,6 +43,15 @@ GameWindow1::GameWindow1(QWidget *parent) :
         }
     }
 
+    /*用来测试zombie动画效果的代码
+    Zombie_Pic *zombie1= new Zombie_Pic(this,0,0,0,2);
+    Zombie_Pic *zombie2= new Zombie_Pic(this,2,1,0,2);
+    z_pic.append(zombie1);
+    z_pic.append(zombie2);
+    */
+    QTimer *zombieMove_timer1=new QTimer(this);//僵尸运动的计时器
+    connect(zombieMove_timer1,SIGNAL(timeout()),this,SLOT(move_zombie()));
+    zombieMove_timer1->start(1000);//timer设定每1s进行一次僵尸动画的位置运动
 
     //connect的四个参数分别是：1.信号发出者 2.发生的事件 3.信号接受者 4.要执行的动作，也就是槽函数
     //我们返回主窗口分为两步：1.点击b3发出一个mysolt信号 2.主窗口收到这个信号之后，调用主窗口的back1方法来实现返回主窗口（下面两行注释详细说明）
@@ -154,4 +165,11 @@ void GameWindow1::mousePressEvent(QMouseEvent *event){  //用于取消种植植�
 
 void GameWindow1::starttimer(){
     this->timer.start();
+}
+
+void GameWindow1::move_zombie(){
+    for(int i=0;i<z_pic.size();i++){
+        z_pic[i]->Zombie_Walk();
+        z_pic[i]->Zombie_Move(5);
+    }//对zombie_pic list中所有僵尸执行运动，默认步长为5
 }
