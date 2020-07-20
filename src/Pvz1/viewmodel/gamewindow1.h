@@ -37,6 +37,7 @@ public:
     static QList<ShootPea*> shootpeas;//记录场上飞行的豌豆
     static QList<Zombie*> zombies;
     static QList<Zombie_Pic*> z_pic;
+    static QList<Sun_Pic*> sunlight;
     static int ZombieNum[5];//记录场上每一行僵尸的数量
 
 private:
@@ -60,6 +61,8 @@ public slots:
     void seedbox_clicked(int planttype);
     void move_zombie();
     void generate_zombie();//僵尸生成函数
+    void sun_move();
+    void sun_down();
 };
 
 
