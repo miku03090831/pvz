@@ -73,7 +73,7 @@ void GameWindow1::putplant(int place){  //点击格子时触发，用x*10+y表�
     case 7:if(pic[i][j].gettype()!=0)   pic[i][j].set_pic(0);cursorchange(0);break;
     default:cursor_type=0;break;
     }
-
+    zp->Zombie_LostHead();
     box[i][j].raise();
 }
 

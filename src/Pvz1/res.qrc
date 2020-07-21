@@ -39,7 +39,6 @@
         <file>res/ZombieHead.gif</file>
         <file>res/ZombieLostHead.gif</file>
         <file>res/ZombieLostHeadAttack.gif</file>
-        <file>res/Zombie.gif</file>
         <file>res/BucketheadZombie.gif</file>
         <file>res/BucketheadZombieAttack.gif</file>
         <file>res/ConeheadZombie.gif</file>
@@ -49,5 +48,13 @@
         <file>.gitignore</file>
         <file>res/BurnDie.gif</file>
         <file>res/Sun.gif</file>
+        <file>res/BucketheadZombie_Froze.gif</file>
+        <file>res/BucketheadZombieAttack_Froze.gif</file>
+        <file>res/ConeheadZombie_Froze.gif</file>
+        <file>res/ConeheadZombieAttack_Froze.gif</file>
+        <file>res/Zombie2_Froze.gif</file>
+        <file>res/ZombieAttack_Froze.gif</file>
+        <file>res/ZombieLostHead_Froze.gif</file>
+        <file>res/ZombieLostHeadAttack_Froze.gif</file>
     </qresource>
 </RCC>

@@ -18,19 +18,20 @@ public:
     void Zombie_Die();  //死亡，死亡时僵尸应该处于LostHead状态
     void Zombie_Walk();     //将僵尸调整为走动状态，只改变图像
     void Zombie_LostHead(); //僵尸头掉了，保持原来的动画状态（行走/攻击）
-    void Zombie_Froze();    //等着之后写
+    void Zombie_Froze();    //冰冻，会影响其他的函数，其他函数调用后依然为冰冻状态
+    void Zombie_deFroze();  //解冻
     void Zombie_Burn(); //被烧死，之后会添加消除图像的函数
     int del;    //=1表示应该删除
 private:
     QMovie movie;
     QLabel headlabel;
     QMovie headmovie;
-    int frame;
     int time;
     int type;
     int attack;
     int interval;
     int movetime;
+    int froze;
     int dead;
     int losthead;
 public slots:

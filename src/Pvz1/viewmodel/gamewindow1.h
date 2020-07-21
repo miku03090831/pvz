@@ -47,6 +47,7 @@ private:
     QPixmap plantbox_pic;
 
 
+
 signals://自定义的一个信号，用于被发射（在sendsolt方法中被emit出去）
     void myslot();
 
