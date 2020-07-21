@@ -7,6 +7,7 @@
 #include<QLabel>
 #include<QLayout>
 #include<QtGui>
+#include<QtGlobal>
 
 #include "../common/common.h"
 #include "../common/plant.h"
@@ -27,6 +28,7 @@ public:
     void cursorchange(int cursortype);
     void plant1();
     void starttimer();
+    int Gen_Rand(int upper);
     Sun_Pic *sp;
     void show_shovel();//铲子
     void mousePressEvent(QMouseEvent *event);
@@ -34,12 +36,16 @@ public:
     static QList<Plant*> plants;//记录场上的植物
     static QList<ShootPea*> shootpeas;//记录场上飞行的豌豆
     static QList<Zombie*> zombies;
+    static QList<Zombie_Pic*> z_pic;
+    static QList<Sun_Pic*> sunlight;
     static int ZombieNum[5];//记录场上每一行僵尸的数量
 
 private:
     QPushButton b3,shovel,box[9][5];
     Plant_Pic pic[9][5];
     int cursor_type;
+    int zombie_G_mode=3;
+    int zombie_G_speed=3;//G_mode是产生僵尸类型的限制，G_speed是产生僵尸的速度限制
     QSignalMapper signalmapper;
     QTimeLine timer;
     QLabel plantbox;
@@ -54,7 +60,10 @@ signals://自定义的一个信号，用于被发射（在sendsolt方法中被em
 public slots:
     void putplant(int place);
     void seedbox_clicked(int planttype);
-
+    void move_zombie();
+    void generate_zombie();//僵尸生成函数
+    void sun_move();
+    void sun_down();
 };
 
 

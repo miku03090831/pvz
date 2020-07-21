@@ -1,6 +1,9 @@
 ﻿#include "gamewindow1.h"
 /*建议可以尝试填充button的响应函数*/
 
+QList<Zombie_Pic*> GameWindow1::z_pic;
+QList<Sun_Pic*> GameWindow1::sunlight;
+
 GameWindow1::GameWindow1(QWidget *parent) :
     QWidget(parent)
 {
@@ -41,6 +44,31 @@ GameWindow1::GameWindow1(QWidget *parent) :
         }
     }
 
+    /*用来测试zombie动画效果的代码
+    Zombie_Pic *zombie1= new Zombie_Pic(this,0,0,0,2);
+    Zombie_Pic *zombie2= new Zombie_Pic(this,2,1,0,2);
+    z_pic.append(zombie1);
+    z_pic.append(zombie2);
+    */
+    QTimer *zombieMove_timer1=new QTimer(this);//僵尸运动的计时器
+    connect(zombieMove_timer1,SIGNAL(timeout()),this,SLOT(move_zombie()));
+    zombieMove_timer1->start(1000);//timer设定每1s进行一次僵尸动画的位置运动
+
+    QTimer *zombieGen_timer1=new QTimer(this);//僵尸生成计时器
+    connect(zombieGen_timer1,SIGNAL(timeout()),this,SLOT(generate_zombie()));
+    zombieGen_timer1->start(10000);
+
+    /*Sun_Pic* sun1=new Sun_Pic(this, 400, 0, 525, 10000);
+    Sun_Pic* sun2=new Sun_Pic(this, 700, 0, 525, 10000);
+    sunlight.append(sun1);
+    sunlight.append(sun2);*/
+    QTimer *sun_timer1=new QTimer(this);
+    connect(sun_timer1,SIGNAL(timeout()),this,SLOT(sun_move()));
+    sun_timer1->start(20);
+
+    QTimer *sun_timer2=new QTimer(this);
+    connect(sun_timer2,SIGNAL(timeout()),this,SLOT(sun_down()));
+    sun_timer2->start(2000);
 
     //connect的四个参数分别是：1.信号发出者 2.发生的事件 3.信号接受者 4.要执行的动作，也就是槽函数
     //我们返回主窗口分为两步：1.点击b3发出一个mysolt信号 2.主窗口收到这个信号之后，调用主窗口的back1方法来实现返回主窗口（下面两行注释详细说明）
@@ -154,4 +182,50 @@ void GameWindow1::mousePressEvent(QMouseEvent *event){  //用于取消种植植�
 
 void GameWindow1::starttimer(){
     this->timer.start();
+}
+
+void GameWindow1::move_zombie(){
+    for(int i=0;i<z_pic.size();i++){
+        z_pic[i]->Zombie_Walk();
+        z_pic[i]->Zombie_Move(20);
+    }//对zombie_pic list中所有僵尸执行运动，默认步长为20
+}
+
+void GameWindow1::generate_zombie(){
+    int type, row;
+    /*for(int i=0;i<1;i++){
+        type=Gen_Rand(zombie_G_mode);
+        row=Gen_Rand(5);
+        z_pic.append(new Zombie_Pic(this,row,type,1,1));
+    }*/
+}
+
+int GameWindow1::Gen_Rand(int upper){
+    if(upper<=0)
+        return 0;
+    qsrand(QTime(0,0,0).secsTo(QTime::currentTime()));
+    return qrand()%upper;
+}
+
+void GameWindow1::sun_move(){
+    int todel=-1;
+    Sun_Pic* tmp;
+    for(int i=0;i<sunlight.size();i++){
+        sunlight[i]->duration+=20;
+        if(sunlight[i]->duration>=10000){
+            if(todel<0)
+                todel=i;
+        }
+        sunlight[i]->sunmove(2);
+    }
+    if(todel>=0){
+        tmp=sunlight.takeAt(todel);
+        delete tmp;
+    }
+}
+
+void GameWindow1::sun_down(){
+    int sun_x=Gen_Rand(700);
+    sun_x=(sun_x*sun_x)%700;
+    sunlight.append(new Sun_Pic(this,sun_x,0,525,0));
 }
