@@ -101,7 +101,7 @@ void GameWindow1::putplant(int place){  //点击格子时触发，用x*10+y表�
     case 7:if(pic[i][j].gettype()!=0)   pic[i][j].set_pic(0);cursorchange(0);break;
     default:cursor_type=0;break;
     }
-    zp->Zombie_LostHead();
+
     box[i][j].raise();
 }
 
@@ -193,11 +193,11 @@ void GameWindow1::move_zombie(){
 
 void GameWindow1::generate_zombie(){
     int type, row;
-    /*for(int i=0;i<1;i++){
+    for(int i=0;i<1;i++){
         type=Gen_Rand(zombie_G_mode);
         row=Gen_Rand(5);
         z_pic.append(new Zombie_Pic(this,row,type,1,1));
-    }*/
+    }
 }
 
 int GameWindow1::Gen_Rand(int upper){
