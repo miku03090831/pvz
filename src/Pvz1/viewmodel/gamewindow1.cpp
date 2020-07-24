@@ -198,6 +198,7 @@ void GameWindow1::generate_zombie(){
         type=Gen_Rand(zombie_G_mode);
         row=Gen_Rand(5);
         z_pic.append(new Zombie_Pic(this,row,type,0,1));
+        ZombieNum[row]++;
     }
 }
 

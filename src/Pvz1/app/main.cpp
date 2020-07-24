@@ -1,5 +1,5 @@
 ﻿//程序入口
-#include "../model/mainwindow.h"
+#include "../viewmodel/mainwindow.h"
 
 #include <QApplication>
 

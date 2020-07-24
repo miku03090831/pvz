@@ -10,9 +10,9 @@
 #include<QtGlobal>
 
 #include "../common/common.h"
-#include "../common/plant.h"
-#include "../common/shootpea.h"
-#include "../common/zombie.h"
+#include "../model/plant.h"
+#include "../model/shootpea.h"
+#include "../model/zombie.h"
 #include"../view/plant_pic.h"
 #include"../view/zombie_pic.h"
 #include"../view/pea_pic.h"
