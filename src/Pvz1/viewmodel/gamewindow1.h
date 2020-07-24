@@ -64,6 +64,7 @@ public slots:
     void generate_zombie();//僵尸生成函数
     void sun_move();
     void sun_down();
+    void sun_click(int);
 };
 
 

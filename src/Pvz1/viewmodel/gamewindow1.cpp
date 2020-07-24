@@ -17,7 +17,6 @@ GameWindow1::GameWindow1(QWidget *parent) :
                                Qt::SmoothTransformation)));
     setPalette(pal);
     //设置背景
-    sp=new Sun_Pic(this,50,0,400,30);
     b3.setParent(this);
     shovel.setParent(this);
     shovel.setGeometry(446,0,70,72);
@@ -227,5 +226,10 @@ void GameWindow1::sun_move(){
 void GameWindow1::sun_down(){
     int sun_x=Gen_Rand(700);
     sun_x=(sun_x*sun_x)%700;
-    sunlight.append(new Sun_Pic(this,sun_x,0,525,0));
+    sunlight.append(new Sun_Pic(this,sun_x,0,525,0,sunlight.size()));
+    connect(sunlight[sunlight.size()-1],SIGNAL(clicked(int)),this,SLOT(sun_click(int)));
+}
+
+void GameWindow1::sun_click(int id){
+    sunlight[id]->hide();
 }
