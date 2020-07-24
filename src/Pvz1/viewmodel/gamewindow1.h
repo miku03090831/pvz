@@ -28,6 +28,7 @@ public:
     void cursorchange(int cursortype);
     void plant1();
     void starttimer();
+    void rebind_sun();
     int Gen_Rand(int upper);
     Sun_Pic *sp;
     void show_shovel();//铲子
@@ -46,7 +47,7 @@ private:
     int cursor_type;
     int zombie_G_mode=3;
     int zombie_G_speed=3;//G_mode是产生僵尸类型的限制，G_speed是产生僵尸的速度限制
-    QSignalMapper signalmapper;
+    QSignalMapper signalmapper, sunmapper;
     QTimeLine timer;
     QLabel plantbox;
     Seedbox seedbox;
@@ -64,6 +65,7 @@ public slots:
     void generate_zombie();//僵尸生成函数
     void sun_move();
     void sun_down();
+    void sun_clicked(int id);
 };
 
 

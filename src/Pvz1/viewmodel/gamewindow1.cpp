@@ -44,31 +44,31 @@ GameWindow1::GameWindow1(QWidget *parent) :
         }
     }
 
-    /*用来测试zombie动画效果的代码
-    Zombie_Pic *zombie1= new Zombie_Pic(this,0,0,0,2);
+    /*用来测试zombie动画效果的代码*/
+    /*Zombie_Pic *zombie1= new Zombie_Pic(this,0,0,0,2);
     Zombie_Pic *zombie2= new Zombie_Pic(this,2,1,0,2);
     z_pic.append(zombie1);
-    z_pic.append(zombie2);
-    */
+    z_pic.append(zombie2);*/
+
     QTimer *zombieMove_timer1=new QTimer(this);//僵尸运动的计时器
     connect(zombieMove_timer1,SIGNAL(timeout()),this,SLOT(move_zombie()));
-    zombieMove_timer1->start(1000);//timer设定每1s进行一次僵尸动画的位置运动
+    zombieMove_timer1->start(2000);//timer设定每1s进行一次僵尸动画的位置运动
 
     QTimer *zombieGen_timer1=new QTimer(this);//僵尸生成计时器
     connect(zombieGen_timer1,SIGNAL(timeout()),this,SLOT(generate_zombie()));
     zombieGen_timer1->start(10000);
 
-    /*Sun_Pic* sun1=new Sun_Pic(this, 400, 0, 525, 10000);
-    Sun_Pic* sun2=new Sun_Pic(this, 700, 0, 525, 10000);
+    Sun_Pic* sun1=new Sun_Pic(this, 400, 0, 525, 0);
+    Sun_Pic* sun2=new Sun_Pic(this, 700, 0, 525, 0);
     sunlight.append(sun1);
-    sunlight.append(sun2);*/
+    sunlight.append(sun2);
     QTimer *sun_timer1=new QTimer(this);
     connect(sun_timer1,SIGNAL(timeout()),this,SLOT(sun_move()));
     sun_timer1->start(20);
 
     QTimer *sun_timer2=new QTimer(this);
     connect(sun_timer2,SIGNAL(timeout()),this,SLOT(sun_down()));
-    sun_timer2->start(2000);
+    sun_timer2->start(5000);
 
     //connect的四个参数分别是：1.信号发出者 2.发生的事件 3.信号接受者 4.要执行的动作，也就是槽函数
     //我们返回主窗口分为两步：1.点击b3发出一个mysolt信号 2.主窗口收到这个信号之后，调用主窗口的back1方法来实现返回主窗口（下面两行注释详细说明）
@@ -78,6 +78,7 @@ GameWindow1::GameWindow1(QWidget *parent) :
     connect(&shovel,&QPushButton::clicked,this,&GameWindow1::show_shovel);
     connect(&signalmapper,SIGNAL(mapped(int)),this,SLOT(putplant(int)));
     connect(&seedbox.seedboxmapper,SIGNAL(mapped(int)),this,SLOT(seedbox_clicked(int)));    //响应植物栏点击
+    connect(&sunmapper,SIGNAL(mapped(int)),this,SLOT(sun_clicked(int)));
     //用于响应点击
     normalpea.load(":/image/res/normalpea.png");
     snowpea.load(":/image/res/snowpea.png");
@@ -101,7 +102,7 @@ void GameWindow1::putplant(int place){  //点击格子时触发，用x*10+y表�
     case 7:if(pic[i][j].gettype()!=0)   pic[i][j].set_pic(0);cursorchange(0);break;
     default:cursor_type=0;break;
     }
-    zp->Zombie_LostHead();
+    //zp->Zombie_LostHead();
     box[i][j].raise();
 }
 
@@ -193,11 +194,11 @@ void GameWindow1::move_zombie(){
 
 void GameWindow1::generate_zombie(){
     int type, row;
-    /*for(int i=0;i<1;i++){
+    for(int i=0;i<1;i++){
         type=Gen_Rand(zombie_G_mode);
         row=Gen_Rand(5);
-        z_pic.append(new Zombie_Pic(this,row,type,1,1));
-    }*/
+        z_pic.append(new Zombie_Pic(this,row,type,0,1));
+    }
 }
 
 int GameWindow1::Gen_Rand(int upper){
@@ -222,10 +223,23 @@ void GameWindow1::sun_move(){
         tmp=sunlight.takeAt(todel);
         delete tmp;
     }
+    rebind_sun();
 }
 
 void GameWindow1::sun_down(){
     int sun_x=Gen_Rand(700);
     sun_x=(sun_x*sun_x)%700;
     sunlight.append(new Sun_Pic(this,sun_x,0,525,0));
+}
+
+void GameWindow1::sun_clicked(int id){
+    Sun_Pic* tmp=sunlight.takeAt(id);
+    delete tmp;
+}
+
+void GameWindow1::rebind_sun(){
+    for(int i=0;i<sunlight.size();i++){
+        connect(&sunlight[i]->sunbutton,SIGNAL(clicked()),&sunmapper,SLOT(map()));
+        sunmapper.setMapping(&sunlight[i]->sunbutton,i);
+    }
 }
