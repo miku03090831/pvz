@@ -17,7 +17,6 @@ GameWindow1::GameWindow1(QWidget *parent) :
                                Qt::SmoothTransformation)));
     setPalette(pal);
     //设置背景
-    sp=new Sun_Pic(this,50,0,400,30);
     b3.setParent(this);
     shovel.setParent(this);
     shovel.setGeometry(446,0,70,72);
@@ -58,8 +57,8 @@ GameWindow1::GameWindow1(QWidget *parent) :
     connect(zombieGen_timer1,SIGNAL(timeout()),this,SLOT(generate_zombie()));
     zombieGen_timer1->start(10000);
 
-    Sun_Pic* sun1=new Sun_Pic(this, 400, 0, 525, 0);
-    Sun_Pic* sun2=new Sun_Pic(this, 700, 0, 525, 0);
+    Sun_Pic* sun1=new Sun_Pic(this, 400, 0, 525, 0,0);
+    Sun_Pic* sun2=new Sun_Pic(this, 700, 0, 525, 0,1);
     sunlight.append(sun1);
     sunlight.append(sun2);
     QTimer *sun_timer1=new QTimer(this);
@@ -78,7 +77,6 @@ GameWindow1::GameWindow1(QWidget *parent) :
     connect(&shovel,&QPushButton::clicked,this,&GameWindow1::show_shovel);
     connect(&signalmapper,SIGNAL(mapped(int)),this,SLOT(putplant(int)));
     connect(&seedbox.seedboxmapper,SIGNAL(mapped(int)),this,SLOT(seedbox_clicked(int)));    //响应植物栏点击
-    connect(&sunmapper,SIGNAL(mapped(int)),this,SLOT(sun_clicked(int)));
     //用于响应点击
     normalpea.load(":/image/res/normalpea.png");
     snowpea.load(":/image/res/snowpea.png");
@@ -222,25 +220,25 @@ void GameWindow1::sun_move(){
     }
     if(todel>=0){
         tmp=sunlight.takeAt(todel);
+        for(int i=todel;i<sunlight.size();i++){
+            sunlight[i]->id--;
+        }
         delete tmp;
     }
-    rebind_sun();
 }
 
 void GameWindow1::sun_down(){
     int sun_x=Gen_Rand(700);
     sun_x=(sun_x*sun_x)%700;
-    sunlight.append(new Sun_Pic(this,sun_x,0,525,0));
+    sunlight.append(new Sun_Pic(this,sun_x,0,525,0,sunlight.size()));
+    connect(sunlight[sunlight.size()-1],SIGNAL(clicked(int)),this,SLOT(sun_clicked(int)));
 }
 
 void GameWindow1::sun_clicked(int id){
     Sun_Pic* tmp=sunlight.takeAt(id);
     delete tmp;
-}
-
-void GameWindow1::rebind_sun(){
-    for(int i=0;i<sunlight.size();i++){
-        connect(&sunlight[i]->sunbutton,SIGNAL(clicked()),&sunmapper,SLOT(map()));
-        sunmapper.setMapping(&sunlight[i]->sunbutton,i);
+    for(int i=id;i<sunlight.size();i++){
+        sunlight[i]->id--;
     }
 }
+
