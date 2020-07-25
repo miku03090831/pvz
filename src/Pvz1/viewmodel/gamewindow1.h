@@ -39,6 +39,8 @@ public:
     static QList<Zombie_Pic*> z_pic;
     static QList<Sun_Pic*> sunlight;
     static int ZombieNum[5];//记录场上每一行僵尸的数量
+    void append_plant(int col, int row);
+    void delete_plant(int col, int row);
 
 private:
     QPushButton b3,shovel,box[9][5];

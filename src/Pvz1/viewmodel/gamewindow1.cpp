@@ -55,7 +55,7 @@ GameWindow1::GameWindow1(QWidget *parent) :
 
     QTimer *zombieGen_timer1=new QTimer(this);//僵尸生成计时器
     connect(zombieGen_timer1,SIGNAL(timeout()),this,SLOT(generate_zombie()));
-    zombieGen_timer1->start(10000);
+    zombieGen_timer1->start(1000);
 
     /*Sun_Pic* sun1=new Sun_Pic(this, 400, 0, 525, 10000);
     Sun_Pic* sun2=new Sun_Pic(this, 700, 0, 525, 10000);
@@ -93,11 +93,18 @@ void GameWindow1::putplant(int place){  //点击格子时触发，用x*10+y表�
     case 3:
     case 4:
     case 5:
-    case 6:if(pic[i][j].gettype()==0)
-                pic[i][j].set_pic(cursor_type);
-           cursorchange(0);
+    case 6:if(pic[i][j].gettype()==0){
+            pic[i][j].set_pic(cursor_type);
+            append_plant(i,j);
+        }
+           cursorchange(0);          
            break;
-    case 7:if(pic[i][j].gettype()!=0)   pic[i][j].set_pic(0);cursorchange(0);break;
+    case 7:if(pic[i][j].gettype()!=0){
+            delete_plant(i,j);
+            pic[i][j].set_pic(0);
+        }
+        cursorchange(0);
+        break;
     default:cursor_type=0;break;
     }
 
@@ -196,6 +203,14 @@ void GameWindow1::generate_zombie(){
         type=Gen_Rand(zombie_G_mode);
         row=Gen_Rand(5);
         z_pic.append(new Zombie_Pic(this,row,type,1,1));
+        /*if(type==0)
+            zombies.append(new SimpleZombie);
+        else if(type==1)
+            zombies.append(new ConeheadZombie);
+        else
+            zombies.append(new BucketZombie);
+        zombies[zombies.size()-1]->row=row;*/
+        ZombieNum[row]++;
     }
 }
 
@@ -207,19 +222,12 @@ int GameWindow1::Gen_Rand(int upper){
 }
 
 void GameWindow1::sun_move(){
-    int todel=-1;
-    Sun_Pic* tmp;
     for(int i=0;i<sunlight.size();i++){
         sunlight[i]->duration+=20;
         if(sunlight[i]->duration>=10000){
-            if(todel<0)
-                todel=i;
+            sunlight[i]->hide();
         }
         sunlight[i]->sunmove(2);
-    }
-    if(todel>=0){
-        tmp=sunlight.takeAt(todel);
-        delete tmp;
     }
 }
 
@@ -233,3 +241,33 @@ void GameWindow1::sun_down(){
 void GameWindow1::sun_click(int id){
     sunlight[id]->hide();
 }
+
+void GameWindow1::append_plant(int col, int row){
+    switch (cursor_type) {
+    case 1:plants.append(new SinglePea);break;
+    case 2:plants.append(new IcePea);break;
+    case 3:plants.append(new DoublePea);break;
+    case 4:plants.append(new WallNut);break;
+    case 5:plants.append(new SunFlower);break;
+    case 6:plants.append(new Cherry);break;
+    default:return;
+    }
+    plants[plants.size()-1]->col=col;
+    plants[plants.size()-1]->row=row;
+}
+//把植物加进plants
+
+void GameWindow1::delete_plant(int col, int row){
+    int index=-1;
+    for(int i=0;i<plants.size();i++){
+        if(plants[i]->col==col&&plants[i]->row==row){
+            index=i;
+            break;
+        }
+    }
+    if(index>=0){
+        Plant* tmp=plants.takeAt(index);
+        delete tmp;
+    }
+}
+//删除plants中的植物
