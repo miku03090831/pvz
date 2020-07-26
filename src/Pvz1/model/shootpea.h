@@ -4,7 +4,7 @@
 #include <QWidget>
 #include <QMovie>
 
-#include "common.h"
+#include "../common/common.h"
 
 
 class ShootPea:public Common

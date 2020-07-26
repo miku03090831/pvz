@@ -3,7 +3,7 @@
 
 #include <QLabel>
 
-#include "common.h"
+#include "../common/common.h"
 
 class Zombie:public Common
 {

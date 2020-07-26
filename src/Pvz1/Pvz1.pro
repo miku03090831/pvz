@@ -25,10 +25,10 @@ SOURCES += \
     viewmodel/gamewindow1.cpp \
     viewmodel/gamewindow2.cpp \
     app/main.cpp \
-    model/mainwindow.cpp \
-    common/plant.cpp \
-    common/shootpea.cpp \
-    common/zombie.cpp
+    viewmodel/mainwindow.cpp \
+    model/plant.cpp \
+    model/shootpea.cpp \
+    model/zombie.cpp
 
 HEADERS += \
     common/common.h \
@@ -39,13 +39,13 @@ HEADERS += \
     view/zombie_pic.h \
     viewmodel/gamewindow1.h \
     viewmodel/gamewindow2.h \
-    model/mainwindow.h \
-    common/plant.h \
-    common/shootpea.h \
-    common/zombie.h
+    viewmodel/mainwindow.h \
+    model/plant.h \
+    model/shootpea.h \
+    model/zombie.h
 
 FORMS += \
-    model/mainwindow.ui
+    viewmodel/mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -203,13 +203,13 @@ void GameWindow1::generate_zombie(){
         type=Gen_Rand(zombie_G_mode);
         row=Gen_Rand(5);
         z_pic.append(new Zombie_Pic(this,row,type,1,1));
-        /*if(type==0)
+        if(type==0)
             zombies.append(new SimpleZombie);
         else if(type==1)
             zombies.append(new ConeheadZombie);
         else
             zombies.append(new BucketZombie);
-        zombies[zombies.size()-1]->row=row;*/
+        zombies[zombies.size()-1]->row=row;
         ZombieNum[row]++;
     }
 }

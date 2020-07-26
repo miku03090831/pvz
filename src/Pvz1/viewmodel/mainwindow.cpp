@@ -1,6 +1,6 @@
 ﻿#include "mainwindow.h"
-#include "../viewmodel/gamewindow1.h"
-#include "../viewmodel/gamewindow2.h"
+#include "gamewindow1.h"
+#include "gamewindow2.h"
 
 
 MainWindow::MainWindow(QWidget *parent)

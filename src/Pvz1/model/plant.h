@@ -7,7 +7,7 @@
 
 
 #include "shootpea.h"
-#include "common.h"
+#include "../common/common.h"
 
 //植物基类
 class Plant:public Common
