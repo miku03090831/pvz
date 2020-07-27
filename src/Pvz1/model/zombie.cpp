@@ -30,7 +30,7 @@ SimpleZombie::SimpleZombie(QWidget* parent)
     this->speed=0.5;
     this->health=200;
     this->posX=805;
-    this->show();
+
 }
 
 SimpleZombie::~SimpleZombie()
@@ -93,7 +93,7 @@ ConeheadZombie::ConeheadZombie(QWidget* parent)
     this->speed=0.5;
     this->health=200;
     this->posX=805;
-    this->show();
+
 }
 
 ConeheadZombie::~ConeheadZombie()
@@ -166,7 +166,7 @@ BucketZombie::BucketZombie(QWidget* parent)
     this->speed=0.5;
     this->health=200;
     this->posX=805;
-    this->show();
+
 }
 
 BucketZombie::~BucketZombie()

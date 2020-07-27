@@ -26,7 +26,7 @@ void Plant::hit(int damage)
 SinglePea::SinglePea(QWidget* parent):Plant(parent)
 {
     //播放gif
-    this->show();
+
     this->health=200;
     this->interval=50;
     this->timer=this->interval;
@@ -63,7 +63,7 @@ SinglePea::~SinglePea()
 IcePea::IcePea(QWidget* parent):Plant(parent)
 {
     //播放gif
-    this->show();
+
     this->health=200;
     this->interval=50;
     this->timer=this->interval;
@@ -98,7 +98,7 @@ IcePea::~IcePea()
 DoublePea::DoublePea(QWidget* parent):Plant(parent)
 {
     //播放gif
-    this->show();
+
     this->health=200;
     this->interval=50;
     this->timer=this->interval;
@@ -148,7 +148,7 @@ DoublePea::~DoublePea()
 SunFlower::SunFlower(QWidget* parent):Plant(parent)
 {
     //播放gif
-    this->show();
+
     this->health=200;
     this->interval=500;
     this->timer=this->interval;
@@ -175,7 +175,7 @@ SunFlower::~SunFlower()
 WallNut::WallNut(QWidget* parent):Plant(parent)
 {
     //播放gif
-    this->show();
+
     this->health=2000;
 }
 
@@ -200,7 +200,7 @@ WallNut::~WallNut()
 Cherry::Cherry(QWidget* parent):Plant(parent)
 {
     //播放gif
-    this->show();
+
     this->health=10000;
     this->timer=10;
 }

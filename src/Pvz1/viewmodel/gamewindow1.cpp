@@ -55,7 +55,7 @@ GameWindow1::GameWindow1(QWidget *parent) :
 
     QTimer *zombieGen_timer1=new QTimer(this);//僵尸生成计时器
     connect(zombieGen_timer1,SIGNAL(timeout()),this,SLOT(generate_zombie()));
-    zombieGen_timer1->start(1000);
+    zombieGen_timer1->start(10000);
 
     /*Sun_Pic* sun1=new Sun_Pic(this, 400, 0, 525, 10000);
     Sun_Pic* sun2=new Sun_Pic(this, 700, 0, 525, 10000);
@@ -67,7 +67,7 @@ GameWindow1::GameWindow1(QWidget *parent) :
 
     QTimer *sun_timer2=new QTimer(this);
     connect(sun_timer2,SIGNAL(timeout()),this,SLOT(sun_down()));
-    sun_timer2->start(2000);
+    sun_timer2->start(5000);
 
     //connect的四个参数分别是：1.信号发出者 2.发生的事件 3.信号接受者 4.要执行的动作，也就是槽函数
     //我们返回主窗口分为两步：1.点击b3发出一个mysolt信号 2.主窗口收到这个信号之后，调用主窗口的back1方法来实现返回主窗口（下面两行注释详细说明）
@@ -202,13 +202,13 @@ void GameWindow1::generate_zombie(){
     for(int i=0;i<1;i++){
         type=Gen_Rand(zombie_G_mode);
         row=Gen_Rand(5);
-        z_pic.append(new Zombie_Pic(this,row,type,1,1));
+        z_pic.append(new Zombie_Pic(this,row,type,0,1));
         if(type==0)
-            zombies.append(new SimpleZombie);
+            zombies.append(new SimpleZombie(this));
         else if(type==1)
-            zombies.append(new ConeheadZombie);
+            zombies.append(new ConeheadZombie(this));
         else
-            zombies.append(new BucketZombie);
+            zombies.append(new BucketZombie(this));
         zombies[zombies.size()-1]->row=row;
         ZombieNum[row]++;
     }
@@ -244,12 +244,12 @@ void GameWindow1::sun_click(int id){
 
 void GameWindow1::append_plant(int col, int row){
     switch (cursor_type) {
-    case 1:plants.append(new SinglePea);break;
-    case 2:plants.append(new IcePea);break;
-    case 3:plants.append(new DoublePea);break;
-    case 4:plants.append(new WallNut);break;
-    case 5:plants.append(new SunFlower);break;
-    case 6:plants.append(new Cherry);break;
+    case 1:plants.append(new SinglePea(this));break;
+    case 2:plants.append(new IcePea(this));break;
+    case 3:plants.append(new DoublePea(this));break;
+    case 4:plants.append(new WallNut(this));break;
+    case 5:plants.append(new SunFlower(this));break;
+    case 6:plants.append(new Cherry(this));break;
     default:return;
     }
     plants[plants.size()-1]->col=col;
