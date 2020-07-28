@@ -75,6 +75,7 @@ GameWindow1::GameWindow1(QWidget *parent) :
     QTimer *alive_check=new QTimer(this);
     connect(alive_check,SIGNAL(timeout()),this,SLOT(zombie_hide()));
     connect(alive_check,SIGNAL(timeout()),this,SLOT(plant_death()));
+    connect(alive_check,SIGNAL(timeout()),this,SLOT(set_sun_num()));
     alive_check->start(100);
 
     //connect的四个参数分别是：1.信号发出者 2.发生的事件 3.信号接受者 4.要执行的动作，也就是槽函数
@@ -247,6 +248,7 @@ void GameWindow1::sun_down(){
 
 void GameWindow1::sun_click(int id){
     sunlight[id]->hide();
+    Sunlight_num+=25;
 }
 
 void GameWindow1::append_plant(int col, int row){
@@ -300,3 +302,7 @@ void GameWindow1::plant_death(){
         delete tmp;
     }
 }//检查plant是否被吃
+
+void GameWindow1::set_sun_num(){
+    seedbox.SunNumChange(Sunlight_num);
+}

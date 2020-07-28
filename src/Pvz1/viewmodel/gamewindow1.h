@@ -46,6 +46,7 @@ private:
     QPushButton b3,shovel,box[9][5];
     Plant_Pic pic[9][5];
     int cursor_type;
+    int Sunlight_num=50;
     int zombie_G_mode=3;
     int zombie_G_speed=3;//G_mode是产生僵尸类型的限制，G_speed是产生僵尸的速度限制
     QSignalMapper signalmapper;
@@ -69,6 +70,7 @@ public slots:
     void zombie_hide();
     void plant_death();
     void sun_click(int);
+    void set_sun_num();
 };
 
 
