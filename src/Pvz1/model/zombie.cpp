@@ -45,7 +45,7 @@ void SimpleZombie::act()
     Plant* p;
     foreach(p,GameWindow1::plants)
     {
-        if((qAbs(p->x() - this->x() -this->offset) <100) && (this->row == p->row) && (this->alive))
+        if((qAbs(p->x() - this->x() -this->offset) <100) && (this->row == p->row) && (this->alive) )
         {
             if(this->interval <=0 )
             {

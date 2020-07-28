@@ -18,6 +18,7 @@ public:
     virtual void act();//这个包括攻击，产阳光等
     virtual void hit(int damage);//这个是被攻击
     int col,row;
+    int state=0;//0代表无事发生，1代表射普通豌豆，2代表射冰豌豆，-1代表产阳光
 };
 
 //豌豆射手
