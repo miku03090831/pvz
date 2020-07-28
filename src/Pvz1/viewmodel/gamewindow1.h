@@ -72,6 +72,7 @@ public slots:
     void plant_death();
     void sun_click(int);
     void set_sun_num();
+    void act_plant();
 };
 
 

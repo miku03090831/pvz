@@ -78,6 +78,11 @@ GameWindow1::GameWindow1(QWidget *parent) :
     connect(alive_check,SIGNAL(timeout()),this,SLOT(set_sun_num()));
     alive_check->start(100);
 
+    QTimer *plant_act=new QTimer(this);
+    connect(plant_act,SIGNAL(timeout()),this,SLOT(act_plant()));
+    plant_act->start(20);
+
+
     //connect的四个参数分别是：1.信号发出者 2.发生的事件 3.信号接受者 4.要执行的动作，也就是槽函数
     //我们返回主窗口分为两步：1.点击b3发出一个mysolt信号 2.主窗口收到这个信号之后，调用主窗口的back1方法来实现返回主窗口（下面两行注释详细说明）
     //把b3按钮和sendsolt方法绑定，就是说按下按钮的时候会调用下面的sendslot方法，执行emit mysolt()，就是把这个信号发送出去的意思
@@ -215,6 +220,7 @@ void GameWindow1::starttimer(){
 void GameWindow1::move_zombie(){
     for(int i=0;i<z_pic.size();i++){
         z_pic[i]->Zombie_Move(6);
+        zombies[i]->posX=z_pic[i]->getx();
     }//对zombie_pic list中所有僵尸执行运动，默认步长为20
 }
 
@@ -333,3 +339,20 @@ void GameWindow1::sunlight_sub(){
     }
     Sunlight_num-=value;
 }//种植植物，阳光减少
+
+void GameWindow1::act_plant(){
+    for(int i=0;i<plants.size();i++){
+        plants[i]->act();
+        if(plants[i]->state==1){
+            Pea *p=new Pea;
+            p->row=plants[i]->row;
+            shootpeas.append(p);
+        }
+        else if(plants[i]->state==2){
+            Ice *p=new Ice;
+            p->row=plants[i]->row;
+            shootpeas.append(p);
+        }
+    }
+}//射出豌豆的设定
+

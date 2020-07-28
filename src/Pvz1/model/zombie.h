@@ -19,7 +19,7 @@ public:
     bool iced=false;
     bool moving=true;
     double speed;
-    double posX;//横坐标
+    int posX;//横坐标
 };
 
 class SimpleZombie:public Zombie

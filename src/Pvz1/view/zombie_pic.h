@@ -22,6 +22,7 @@ public:
     void Zombie_deFroze();  //解冻
     void Zombie_Burn(); //被烧死，之后会添加消除图像的函数
     int del;    //=1表示应该删除
+    int getx();
 private:
     QMovie movie;
     QLabel headlabel;
