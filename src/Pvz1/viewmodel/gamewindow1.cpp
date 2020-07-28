@@ -275,12 +275,12 @@ void GameWindow1::sun_click(int id){
 
 void GameWindow1::append_plant(int col, int row){
     switch (cursor_type) {
-    case 1:plants.append(new SinglePea(this));break;
-    case 2:plants.append(new IcePea(this));break;
-    case 3:plants.append(new DoublePea(this));break;
-    case 4:plants.append(new WallNut(this));break;
-    case 5:plants.append(new SunFlower(this));break;
-    case 6:plants.append(new Cherry(this));break;
+    case 1:plants.append(new SunFlower(this));break;
+    case 2:plants.append(new SinglePea(this));break;
+    case 3:plants.append(new IcePea(this));break;
+    case 4:plants.append(new DoublePea(this));break;
+    case 5:plants.append(new Cherry(this));break;
+    case 6:plants.append(new WallNut(this));break;
     default:return;
     }
     plants[plants.size()-1]->col=col;
@@ -366,11 +366,16 @@ void GameWindow1::act_plant(){
             Pea *p=new Pea;
             p->row=plants[i]->row;
             shootpeas.append(p);
+
         }
         else if(plants[i]->state==2){
             Ice *p=new Ice;
             p->row=plants[i]->row;
             shootpeas.append(p);
+        }
+        else if(plants[i]->state==-1){
+            sunlight.append(new Sun_Pic(this,plants[i]->x()+30,plants[i]->y(),plants[i]->y(),0,sunlight.size()));
+            connect(sunlight[sunlight.size()-1],SIGNAL(clicked(int)),this,SLOT(sun_click(int)));
         }
     }
 }//射出豌豆的设定

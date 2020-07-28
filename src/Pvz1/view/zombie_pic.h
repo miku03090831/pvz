@@ -24,7 +24,7 @@ public:
     int getx(); //获取x
     int gety(); //获取y
     int del;    //=1表示应该删除
-    int getx();
+
 private:
     QMovie movie;
     QLabel headlabel;

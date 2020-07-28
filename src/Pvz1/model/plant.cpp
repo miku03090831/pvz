@@ -163,7 +163,7 @@ SunFlower::SunFlower(QWidget* parent):Plant(parent)
     //播放gif
 
     this->health=200;
-    this->interval=500;
+    this->interval=100;
     this->timer=this->interval;
 }
 
@@ -177,7 +177,9 @@ void SunFlower::act()
     }
     else
     {
-        this->timer--;
+        int a=qrand()%2;
+        if(a)
+            this->timer--;
         this->state=0;
     }
 }
