@@ -254,6 +254,7 @@ void GameWindow1::append_plant(int col, int row){
     }
     plants[plants.size()-1]->col=col;
     plants[plants.size()-1]->row=row;
+    plants[plants.size()-1]->setGeometry(50+81*col,100+98*row,81,98);
 }
 //把植物加进plants
 
