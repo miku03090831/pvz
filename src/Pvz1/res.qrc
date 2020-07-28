@@ -56,5 +56,8 @@
         <file>res/ZombieAttack_Froze.gif</file>
         <file>res/ZombieLostHead_Froze.gif</file>
         <file>res/ZombieLostHeadAttack_Froze.gif</file>
+        <file>res/Again.png</file>
+        <file>res/Backmenu.png</file>
+        <file>res/ZombiesWon.png</file>
     </qresource>
 </RCC>

@@ -43,16 +43,20 @@ void SinglePea::act()
         }
         this->timer=this->interval;
         //射出一颗豌豆
-        Pea *p = new Pea;
-        p->row=this->row;
-        GameWindow1::shootpeas.append(p);
+        this->state=1;
+//        Pea *p = new Pea;
+//        p->row=this->row;
+//        GameWindow1::shootpeas.append(p);
         //省略了win2的情况
         //播放射出豌豆动画
 
         //关于豌豆的动画
     }
     else
+    {
         this->timer--;
+        this->state=0;
+    }
 }
 
 SinglePea::~SinglePea()
@@ -80,14 +84,18 @@ void IcePea::act()
         }
         this->timer=this->interval;
         //射出一颗豌豆
-        Ice *p = new Ice;
-        p->row=this->row;
-        GameWindow1::shootpeas.append(p);
+        this->state=2;
+//        Ice *p = new Ice;
+//        p->row=this->row;
+//        GameWindow1::shootpeas.append(p);
         //省略了win2的情况
         //播放射出豌豆动画
     }
     else
+    {
         this->timer--;
+        this->state=0;
+    }
 }
 
 IcePea::~IcePea()
@@ -115,9 +123,10 @@ void DoublePea::act()
         }
         this->timer=this->interval;
         //射出一颗豌豆
-        Pea *p = new Pea;
-        p->row=this->row;
-        GameWindow1::shootpeas.append(p);
+        this->state=1;
+//        Pea *p = new Pea;
+//        p->row=this->row;
+//        GameWindow1::shootpeas.append(p);
         //省略了win2的情况
         //播放射出豌豆动画
     }
@@ -130,14 +139,18 @@ void DoublePea::act()
         }
         this->timer--;
         //射出一颗豌豆
-        Pea *p = new Pea;
-        p->row=this->row;
-        GameWindow1::shootpeas.append(p);
+        this->state=1;
+//        Pea *p = new Pea;
+//        p->row=this->row;
+//        GameWindow1::shootpeas.append(p);
         //省略了win2的情况
         //播放射出豌豆动画
     }
     else
+    {
         this->timer--;
+        this->state=0;
+    }
 }
 
 DoublePea::~DoublePea()
@@ -160,10 +173,12 @@ void SunFlower::act()
     {
         this->timer=this->interval;
         //产生一个阳光
+        this->state=-1;
     }
     else
     {
         this->timer--;
+        this->state=0;
     }
 }
 

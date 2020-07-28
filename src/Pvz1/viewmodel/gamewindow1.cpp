@@ -16,6 +16,8 @@ GameWindow1::GameWindow1(QWidget *parent) :
     pal.setBrush(QPalette::Window, QBrush(menu_background.scaled(size(), Qt::IgnoreAspectRatio,
                                Qt::SmoothTransformation)));
     setPalette(pal);
+
+    gaover_pic.setParent(this);
     //设置背景
     b3.setParent(this);
     shovel.setParent(this);
@@ -55,7 +57,7 @@ GameWindow1::GameWindow1(QWidget *parent) :
 
     QTimer *zombieMove_timer1=new QTimer(this);//僵尸运动的计时器
     connect(zombieMove_timer1,SIGNAL(timeout()),this,SLOT(move_zombie()));
-    zombieGen_timer1->start(9927);
+    zombieGen_timer1->start(9178);
     zombieMove_timer1->start(187);//timer设定每0.2s进行一次僵尸动画的位置运动
 
 
@@ -71,6 +73,17 @@ GameWindow1::GameWindow1(QWidget *parent) :
     QTimer *sun_timer2=new QTimer(this);
     connect(sun_timer2,SIGNAL(timeout()),this,SLOT(sun_down()));
     sun_timer2->start(5000);
+
+    QTimer *alive_check=new QTimer(this);
+    connect(alive_check,SIGNAL(timeout()),this,SLOT(zombie_hide()));
+    connect(alive_check,SIGNAL(timeout()),this,SLOT(plant_death()));
+    connect(alive_check,SIGNAL(timeout()),this,SLOT(set_sun_num()));
+    alive_check->start(100);
+
+    QTimer *plant_act=new QTimer(this);
+    connect(plant_act,SIGNAL(timeout()),this,SLOT(act_plant()));
+    plant_act->start(20);
+
 
     //connect的四个参数分别是：1.信号发出者 2.发生的事件 3.信号接受者 4.要执行的动作，也就是槽函数
     //我们返回主窗口分为两步：1.点击b3发出一个mysolt信号 2.主窗口收到这个信号之后，调用主窗口的back1方法来实现返回主窗口（下面两行注释详细说明）
@@ -98,6 +111,7 @@ void GameWindow1::putplant(int place){  //点击格子时触发，用x*10+y表�
     case 5:
     case 6:if(pic[i][j].gettype()==0){
             pic[i][j].set_pic(cursor_type);
+            sunlight_sub();
             append_plant(i,j);
         }
            cursorchange(0);          
@@ -133,36 +147,48 @@ void GameWindow1::cursorchange(int cursortype){ //设置鼠标的样子，点击
         this->setCursor(Qt::ArrowCursor);   //正常图标
         break;
     case 1:
+        if(Sunlight_num<50)
+            return;
         pixmap.load(":/image/res/sunflower_cursor.png");    //太阳花
         cursor_type=1;
         cursor=QCursor(pixmap,-1,-1);
         setCursor(cursor);
         break;
     case 2:
+        if(Sunlight_num<100)
+            return;
         pixmap.load(":/image/res/peanut_cursor.png");   //豌豆
         cursor_type=2;
         cursor=QCursor(pixmap,-1,-1);
         setCursor(cursor);
         break;
     case 3:
+        if(Sunlight_num<175)
+            return;
         pixmap.load(":/image/res/snow_cursor.png"); //寒冰
         cursor_type=3;
         cursor=QCursor(pixmap,-1,-1);
         setCursor(cursor);
         break;
     case 4:
+        if(Sunlight_num<200)
+            return;
         pixmap.load(":/image/res/repeater_cursor.png"); //双发
         cursor_type=4;
         cursor=QCursor(pixmap,-1,-1);
         setCursor(cursor);
         break;
     case 5:
+        if(Sunlight_num<150)
+            return;
         pixmap.load(":/image/res/cherry_cursor.png");   //樱桃
         cursor_type=5;
         cursor=QCursor(pixmap,-1,-1);
         setCursor(cursor);
         break;
     case 6:
+        if(Sunlight_num<50)
+            return;
         pixmap.load(":/image/res/wallnut_cursor.png");  //坚果墙
         cursor_type=6;
         cursor=QCursor(pixmap,-1,-1);
@@ -196,6 +222,8 @@ void GameWindow1::starttimer(){
 void GameWindow1::move_zombie(){
     for(int i=0;i<z_pic.size();i++){
         z_pic[i]->Zombie_Move(6);
+        if(z_pic[i]->getx()+101<0)gameover();
+        zombies[i]->posX=z_pic[i]->getx();
     }//对zombie_pic list中所有僵尸执行运动，默认步长为20
 }
 
@@ -242,6 +270,7 @@ void GameWindow1::sun_down(){
 
 void GameWindow1::sun_click(int id){
     sunlight[id]->hide();
+    Sunlight_num+=25;
 }
 
 void GameWindow1::append_plant(int col, int row){
@@ -274,3 +303,75 @@ void GameWindow1::delete_plant(int col, int row){
     }
 }
 //删除plants中的植物
+
+void GameWindow1::gameover(){
+    gaover_pic.show();
+    gaover_pic.raise();
+    //添加计时器停止
+    this->setAttribute(Qt::WA_TransparentForMouseEvents,true);
+    connect(&gaover_pic.again,SIGNAL(clicked()),this,SLOT(win1again()));
+    connect(&gaover_pic.backtomenu,SIGNAL(clicked()),this,SLOT(win1backtomenu()));
+}
+
+void GameWindow1::win1again(){
+    emit again();
+}
+
+void GameWindow1::win1backtomenu(){
+    emit backtomenu();
+}
+void GameWindow1::zombie_hide(){
+    for(int i=0;i<zombies.size();i++){
+        if(!zombies[i]->alive)
+            zombies[i]->hide();
+    }
+}//隐藏已死亡僵尸
+
+void GameWindow1::plant_death(){
+    int index=-1;
+    for(int i=0;i<plants.size();i++){
+        if(!plants[i]->alive){
+            index=i;
+            break;
+        }
+    }
+    if(index>=0){
+        Plant* tmp=plants.takeAt(index);
+        delete tmp;
+    }
+}//检查plant是否被吃
+
+void GameWindow1::set_sun_num(){
+    seedbox.SunNumChange(Sunlight_num);
+}
+
+void GameWindow1::sunlight_sub(){
+    int value=0;
+    switch(cursor_type){
+    case 1:value=50;break;
+    case 2:value=100;break;
+    case 3:value=175;break;
+    case 4:value=200;break;
+    case 5:value=150;break;
+    case 6:value=50;break;
+    default:break;
+    }
+    Sunlight_num-=value;
+}//种植植物，阳光减少
+
+void GameWindow1::act_plant(){
+    for(int i=0;i<plants.size();i++){
+        plants[i]->act();
+        if(plants[i]->state==1){
+            Pea *p=new Pea;
+            p->row=plants[i]->row;
+            shootpeas.append(p);
+        }
+        else if(plants[i]->state==2){
+            Ice *p=new Ice;
+            p->row=plants[i]->row;
+            shootpeas.append(p);
+        }
+    }
+}//射出豌豆的设定
+

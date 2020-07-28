@@ -18,6 +18,7 @@
 #include"../view/pea_pic.h"
 #include"../view/seedbox.h"
 #include"../view/sun_pic.h"
+#include"../view/gameover_pic.h"
 
 class GameWindow1 : public QWidget
 {
@@ -28,6 +29,7 @@ public:
     void cursorchange(int cursortype);
     void plant1();
     void starttimer();
+    void sunlight_sub();
     int Gen_Rand(int upper);
     Sun_Pic *sp;
     void show_shovel();//铲子
@@ -41,11 +43,13 @@ public:
     static int ZombieNum[5];//记录场上每一行僵尸的数量
     void append_plant(int col, int row);
     void delete_plant(int col, int row);
+    void gameover();    //游戏结束
 
 private:
     QPushButton b3,shovel,box[9][5];
     Plant_Pic pic[9][5];
     int cursor_type;
+    int Sunlight_num=50;
     int zombie_G_mode=3;
     int zombie_G_speed=3;//G_mode是产生僵尸类型的限制，G_speed是产生僵尸的速度限制
     QSignalMapper signalmapper;
@@ -53,20 +57,29 @@ private:
     QLabel plantbox;
     Seedbox seedbox;
     QPixmap plantbox_pic;
+    gameover_pic gaover_pic;
 
 
 
 signals://自定义的一个信号，用于被发射（在sendsolt方法中被emit出去）
     void myslot();
+    void again();
+    void backtomenu();
 
 public slots:
     void putplant(int place);
     void seedbox_clicked(int planttype);
     void move_zombie();
     void generate_zombie();//僵尸生成函数
+    void win1again();
+    void win1backtomenu();
     void sun_move();
     void sun_down();
+    void zombie_hide();
+    void plant_death();
     void sun_click(int);
+    void set_sun_num();
+    void act_plant();
 };
 
 

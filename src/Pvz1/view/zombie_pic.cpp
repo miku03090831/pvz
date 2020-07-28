@@ -291,3 +291,12 @@ void Zombie_Pic::Zombie_Froze(){
     movie.start();
 }
 
+int Zombie_Pic::getx(){
+    return this->x();
+}
+
+int Zombie_Pic::gety(){
+    return this->y();
+}
+
+

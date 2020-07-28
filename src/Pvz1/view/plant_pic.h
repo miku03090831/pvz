@@ -13,6 +13,8 @@ public:
     void removecherry();
     ~Plant_Pic();
     int gettype();
+    int getx();
+    int gety();
 private:
     int type=0;
     int framenum;

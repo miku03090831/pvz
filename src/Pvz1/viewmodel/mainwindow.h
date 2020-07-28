@@ -22,6 +22,8 @@ public:
     void back2();//从 传送带模式 返回主窗口的槽函数
     void game2();//进入 传送带模式 的槽函数
     void exit();//退出游戏的槽函数
+    void win1again();
+    void win1backtomenu();
     QWidget* GetWin();
     int flag=1;
     GameWindow1 gamewin1;//普通无尽窗口的对象

@@ -17,6 +17,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     common/common.cpp \
+    view/gameover_pic.cpp \
     view/pea_pic.cpp \
     view/plant_pic.cpp \
     view/seedbox.cpp \
@@ -32,6 +33,7 @@ SOURCES += \
 
 HEADERS += \
     common/common.h \
+    view/gameover_pic.h \
     view/pea_pic.h \
     view/plant_pic.h \
     view/seedbox.h \
@@ -54,3 +56,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     res.qrc
+
+DISTFILES +=

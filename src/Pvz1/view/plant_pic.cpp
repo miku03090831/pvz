@@ -86,3 +86,11 @@ int Plant_Pic::gettype(){
 }
 
 Plant_Pic::~Plant_Pic(){}
+
+int Plant_Pic::getx(){
+    return this->x();
+}
+
+int Plant_Pic::gety(){
+    return this->y();
+}

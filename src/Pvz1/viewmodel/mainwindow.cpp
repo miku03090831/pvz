@@ -45,6 +45,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(&gamewin1,&GameWindow1::myslot,this,&MainWindow::back1);
     connect(&gamewin2,&GameWindow2::myslot,this,&MainWindow::back2);
+    connect(&gamewin1,&GameWindow1::again,this,&MainWindow::win1again);
+    connect(&gamewin1,&GameWindow1::backtomenu,this,&MainWindow::win1backtomenu);
 
 }
 
@@ -84,3 +86,14 @@ void MainWindow::back2()
     gamewin2.hide();
 }
 
+void MainWindow::win1again(){
+    this->show();
+    gamewin1.hide();
+    //需要更改
+}
+
+void MainWindow::win1backtomenu(){
+    this->show();
+    gamewin1.hide();
+    //需要更改
+}

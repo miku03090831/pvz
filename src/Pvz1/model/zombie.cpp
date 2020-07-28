@@ -45,19 +45,21 @@ void SimpleZombie::act()
     Plant* p;
     foreach(p,GameWindow1::plants)
     {
-        if((qAbs(p->x() - this->x() -this->offset) <100) && (this->row == p->row) && (this->alive))
+        if((qAbs(p->x() - this->x() -this->offset) <100) && (this->row == p->row) && (this->alive) )
         {
             if(this->interval <=0 )
             {
                 this->interval=20;
                 p->hit(1);
                 //播放僵尸吃植物的动画
+                this->moving=false;
             }
             this->interval--;
             return;
         }
     }
     this->posX-=this->speed;
+    this->moving=true;
     this->move(this->posX,this->y());
 }
 
@@ -116,12 +118,14 @@ void ConeheadZombie::act()
                 this->interval=20;
                 p->hit(1);
                 //播放僵尸吃植物的动画
+                this->moving=false;
             }
             this->interval--;
             return;
         }
     }
     this->posX-=this->speed;
+    this->moving=true;
     this->move(this->posX,this->y());
 }
 
@@ -188,11 +192,13 @@ void BucketZombie::act()
                 this->interval=20;
                 p->hit(1);
                 //播放僵尸吃植物的动画
+                this->moving=false;
             }
             this->interval--;
             return;
         }
     }
+    this->moving=true;
     this->posX-=this->speed;
     this->move(this->posX,this->y());
 }

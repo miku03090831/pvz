@@ -15,7 +15,6 @@ void ShootPea::act()
 Pea::Pea(QWidget* parent) : ShootPea(parent)
 {
     //播放动画
-    this->show();
     this->speed=10;
 }
 
@@ -45,7 +44,6 @@ Pea::~Pea()
 Ice::Ice(QWidget* parent)
 {
     //设置动画
-    this->show();
     this->speed=10;
 }
 
