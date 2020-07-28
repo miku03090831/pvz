@@ -4,7 +4,7 @@
 #include<QWidget>
 #include<QMovie>
 
-class Zombie_Pic:QLabel{
+class Zombie_Pic:public QLabel{
     Q_OBJECT;
 public:
     Zombie_Pic(QWidget *parent, int y, int type, int interval, int movetime);

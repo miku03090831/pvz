@@ -131,7 +131,7 @@ void ConeheadZombie::act()
 
 void ConeheadZombie::hit(int damage)
 {
-    if(damage==2000)
+    if(damage>=2000)
     {
         this->alive=false;
         //播放被灰烬植物炸死的动画
@@ -205,7 +205,7 @@ void BucketZombie::act()
 
 void BucketZombie::hit(int damage)
 {
-    if(damage==2000)
+    if(damage>=2000)
     {
         this->alive=false;
         //播放被灰烬植物炸死的动画

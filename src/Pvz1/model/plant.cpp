@@ -219,7 +219,7 @@ Cherry::Cherry(QWidget* parent):Plant(parent)
     //播放gif
 
     this->health=10000;
-    this->timer=10;
+    this->timer=20;
 }
 
 void Cherry::act()
@@ -230,9 +230,9 @@ void Cherry::act()
         Zombie* z;
         foreach(z,GameWindow1::zombies)
         {
-            if((qAbs(z->x() - this->x()) < 200) && (qAbs(this->row - z->row) <=1 ))
+            if((qAbs(z->x() - this->x()) < 150) && (qAbs(this->row - z->row) <=1 ))
             {
-                z->hit(2000);
+                z->hit(10000);
             }
         }
         //并且播放爆炸动画

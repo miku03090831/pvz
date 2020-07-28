@@ -222,8 +222,9 @@ void GameWindow1::starttimer(){
 void GameWindow1::move_zombie(){
     for(int i=0;i<z_pic.size();i++){
         z_pic[i]->Zombie_Move(6);
-        if(z_pic[i]->getx()+101<0)gameover();
-        zombies[i]->posX=z_pic[i]->getx();
+        if(z_pic[i]->getx()+101<0 && z_pic[i]->del==0)gameover();
+        //zombies[i]->posX=z_pic[i]->getx();
+        zombies[i]->move(z_pic[i]->getx(),z_pic[i]->gety());
     }//对zombie_pic list中所有僵尸执行运动，默认步长为20
 }
 
@@ -323,7 +324,11 @@ void GameWindow1::win1backtomenu(){
 void GameWindow1::zombie_hide(){
     for(int i=0;i<zombies.size();i++){
         if(!zombies[i]->alive)
+        {
             zombies[i]->hide();
+            z_pic[i]->del=1;
+            z_pic[i]->hide();
+        }
     }
 }//隐藏已死亡僵尸
 
