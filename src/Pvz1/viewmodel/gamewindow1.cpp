@@ -104,6 +104,7 @@ void GameWindow1::putplant(int place){  //点击格子时触发，用x*10+y表�
     case 5:
     case 6:if(pic[i][j].gettype()==0){
             pic[i][j].set_pic(cursor_type);
+            sunlight_sub();
             append_plant(i,j);
         }
            cursorchange(0);          
@@ -139,36 +140,48 @@ void GameWindow1::cursorchange(int cursortype){ //设置鼠标的样子，点击
         this->setCursor(Qt::ArrowCursor);   //正常图标
         break;
     case 1:
+        if(Sunlight_num<50)
+            return;
         pixmap.load(":/image/res/sunflower_cursor.png");    //太阳花
         cursor_type=1;
         cursor=QCursor(pixmap,-1,-1);
         setCursor(cursor);
         break;
     case 2:
+        if(Sunlight_num<100)
+            return;
         pixmap.load(":/image/res/peanut_cursor.png");   //豌豆
         cursor_type=2;
         cursor=QCursor(pixmap,-1,-1);
         setCursor(cursor);
         break;
     case 3:
+        if(Sunlight_num<175)
+            return;
         pixmap.load(":/image/res/snow_cursor.png"); //寒冰
         cursor_type=3;
         cursor=QCursor(pixmap,-1,-1);
         setCursor(cursor);
         break;
     case 4:
+        if(Sunlight_num<200)
+            return;
         pixmap.load(":/image/res/repeater_cursor.png"); //双发
         cursor_type=4;
         cursor=QCursor(pixmap,-1,-1);
         setCursor(cursor);
         break;
     case 5:
+        if(Sunlight_num<150)
+            return;
         pixmap.load(":/image/res/cherry_cursor.png");   //樱桃
         cursor_type=5;
         cursor=QCursor(pixmap,-1,-1);
         setCursor(cursor);
         break;
     case 6:
+        if(Sunlight_num<50)
+            return;
         pixmap.load(":/image/res/wallnut_cursor.png");  //坚果墙
         cursor_type=6;
         cursor=QCursor(pixmap,-1,-1);
@@ -306,3 +319,17 @@ void GameWindow1::plant_death(){
 void GameWindow1::set_sun_num(){
     seedbox.SunNumChange(Sunlight_num);
 }
+
+void GameWindow1::sunlight_sub(){
+    int value=0;
+    switch(cursor_type){
+    case 1:value=50;break;
+    case 2:value=100;break;
+    case 3:value=175;break;
+    case 4:value=200;break;
+    case 5:value=150;break;
+    case 6:value=50;break;
+    default:break;
+    }
+    Sunlight_num-=value;
+}//种植植物，阳光减少

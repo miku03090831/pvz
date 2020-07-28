@@ -28,6 +28,7 @@ public:
     void cursorchange(int cursortype);
     void plant1();
     void starttimer();
+    void sunlight_sub();
     int Gen_Rand(int upper);
     Sun_Pic *sp;
     void show_shovel();//铲子
