@@ -27,6 +27,7 @@ private:
     QLabel headlabel;
     QMovie headmovie;
     int time;
+    int flag=0;
     int type;
     int attack;
     int interval;

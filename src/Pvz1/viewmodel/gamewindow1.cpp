@@ -49,13 +49,16 @@ GameWindow1::GameWindow1(QWidget *parent) :
     z_pic.append(zombie1);
     z_pic.append(zombie2);
     */
-    QTimer *zombieMove_timer1=new QTimer(this);//僵尸运动的计时器
-    connect(zombieMove_timer1,SIGNAL(timeout()),this,SLOT(move_zombie()));
-    zombieMove_timer1->start(1000);//timer设定每1s进行一次僵尸动画的位置运动
-
     QTimer *zombieGen_timer1=new QTimer(this);//僵尸生成计时器
     connect(zombieGen_timer1,SIGNAL(timeout()),this,SLOT(generate_zombie()));
-    zombieGen_timer1->start(10000);
+
+
+    QTimer *zombieMove_timer1=new QTimer(this);//僵尸运动的计时器
+    connect(zombieMove_timer1,SIGNAL(timeout()),this,SLOT(move_zombie()));
+    zombieGen_timer1->start(9927);
+    zombieMove_timer1->start(187);//timer设定每0.2s进行一次僵尸动画的位置运动
+
+
 
     /*Sun_Pic* sun1=new Sun_Pic(this, 400, 0, 525, 10000);
     Sun_Pic* sun2=new Sun_Pic(this, 700, 0, 525, 10000);
@@ -192,8 +195,7 @@ void GameWindow1::starttimer(){
 
 void GameWindow1::move_zombie(){
     for(int i=0;i<z_pic.size();i++){
-        z_pic[i]->Zombie_Walk();
-        z_pic[i]->Zombie_Move(20);
+        z_pic[i]->Zombie_Move(6);
     }//对zombie_pic list中所有僵尸执行运动，默认步长为20
 }
 
@@ -202,7 +204,7 @@ void GameWindow1::generate_zombie(){
     for(int i=0;i<1;i++){
         type=Gen_Rand(zombie_G_mode);
         row=Gen_Rand(5);
-        z_pic.append(new Zombie_Pic(this,row,type,0,1));
+        z_pic.append(new Zombie_Pic(this,row,type,3,3));
         if(type==0)
             zombies.append(new SimpleZombie(this));
         else if(type==1)

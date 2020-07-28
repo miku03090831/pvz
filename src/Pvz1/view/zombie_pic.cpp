@@ -290,3 +290,4 @@ void Zombie_Pic::Zombie_Froze(){
     movie.jumpToFrame(now_frame);
     movie.start();
 }
+
