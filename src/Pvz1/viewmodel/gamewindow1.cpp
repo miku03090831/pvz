@@ -72,6 +72,11 @@ GameWindow1::GameWindow1(QWidget *parent) :
     connect(sun_timer2,SIGNAL(timeout()),this,SLOT(sun_down()));
     sun_timer2->start(5000);
 
+    QTimer *alive_check=new QTimer(this);
+    connect(alive_check,SIGNAL(timeout()),this,SLOT(zombie_hide()));
+    connect(alive_check,SIGNAL(timeout()),this,SLOT(plant_death()));
+    alive_check->start(100);
+
     //connect的四个参数分别是：1.信号发出者 2.发生的事件 3.信号接受者 4.要执行的动作，也就是槽函数
     //我们返回主窗口分为两步：1.点击b3发出一个mysolt信号 2.主窗口收到这个信号之后，调用主窗口的back1方法来实现返回主窗口（下面两行注释详细说明）
     //把b3按钮和sendsolt方法绑定，就是说按下按钮的时候会调用下面的sendslot方法，执行emit mysolt()，就是把这个信号发送出去的意思
@@ -274,3 +279,24 @@ void GameWindow1::delete_plant(int col, int row){
     }
 }
 //删除plants中的植物
+
+void GameWindow1::zombie_hide(){
+    for(int i=0;i<zombies.size();i++){
+        if(!zombies[i]->alive)
+            zombies[i]->hide();
+    }
+}//隐藏已死亡僵尸
+
+void GameWindow1::plant_death(){
+    int index=-1;
+    for(int i=0;i<plants.size();i++){
+        if(!plants[i]->alive){
+            index=i;
+            break;
+        }
+    }
+    if(index>=0){
+        Plant* tmp=plants.takeAt(index);
+        delete tmp;
+    }
+}//检查plant是否被吃
