@@ -45,12 +45,12 @@ void SimpleZombie::act()
     Plant* p;
     foreach(p,GameWindow1::plants)
     {
-        if((qAbs(p->x() - this->x() -this->offset) <100) && (this->row == p->row) && (this->alive) )
+        if((qAbs(p->x() - this->x()) < 20) && (this->row == p->row) && (this->alive) )
         {
             if(this->interval <=0 )
             {
                 this->interval=20;
-                p->hit(1);
+                p->hit(100);
                 //播放僵尸吃植物的动画
                 this->moving=false;
             }
@@ -58,9 +58,9 @@ void SimpleZombie::act()
             return;
         }
     }
-    this->posX-=this->speed;
-    this->moving=true;
-    this->move(this->posX,this->y());
+//    this->posX-=this->speed;
+      this->moving=true;
+//    this->move(this->posX,this->y());
 }
 
 void SimpleZombie::hit(int damage)
@@ -111,12 +111,12 @@ void ConeheadZombie::act()
     Plant* p;
     foreach(p,GameWindow1::plants)
     {
-        if((qAbs(p->x() - this->x() -this->offset) <100) && (this->row == p->row) && (this->alive))
+        if((qAbs(p->x() - this->x()) < 20) && (this->row == p->row) && (this->alive))
         {
             if(this->interval <=0 )
             {
                 this->interval=20;
-                p->hit(1);
+                p->hit(100);
                 //播放僵尸吃植物的动画
                 this->moving=false;
             }
@@ -124,9 +124,9 @@ void ConeheadZombie::act()
             return;
         }
     }
-    this->posX-=this->speed;
-    this->moving=true;
-    this->move(this->posX,this->y());
+//    this->posX-=this->speed;
+      this->moving=true;
+//    this->move(this->posX,this->y());
 }
 
 void ConeheadZombie::hit(int damage)
@@ -185,12 +185,12 @@ void BucketZombie::act()
     Plant* p;
     foreach(p,GameWindow1::plants)
     {
-        if((qAbs(p->x() - this->x() -this->offset) <100) && (this->row == p->row) && (this->alive))
+        if((qAbs(p->x() - this->x()) < 20) && (this->row == p->row) && (this->alive))
         {
             if(this->interval <=0 )
             {
                 this->interval=20;
-                p->hit(1);
+                p->hit(100);
                 //播放僵尸吃植物的动画
                 this->moving=false;
             }
@@ -198,9 +198,9 @@ void BucketZombie::act()
             return;
         }
     }
-    this->moving=true;
-    this->posX-=this->speed;
-    this->move(this->posX,this->y());
+      this->moving=true;
+//    this->posX-=this->speed;
+//    this->move(this->posX,this->y());
 }
 
 void BucketZombie::hit(int damage)

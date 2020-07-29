@@ -19,6 +19,8 @@ public:
     bool iced=false;
     bool moving=true;
     int flag=0;
+    int attack_flag=0;
+    int froze_flag=0;
     double speed;
     int posX;//横坐标
 };

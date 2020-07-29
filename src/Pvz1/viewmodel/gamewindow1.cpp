@@ -226,14 +226,42 @@ void GameWindow1::mousePressEvent(QMouseEvent *event){  //用于取消种植植�
 
 void GameWindow1::move_zombie(){
     for(int i=0;i<z_pic.size();i++){
+        zombies[i]->act();
         if(!zombies[i]->moving){
-            z_pic[i]->Zombie_Attack();
+            if(zombies[i]->attack_flag==0)
+            {
+                z_pic[i]->Zombie_Attack();
+                zombies[i]->attack_flag=1;
+            }
         }
         else{
             if(zombies[i]->iced)
+            {
+                if(zombies[i]->attack_flag==1)
+                {
+                    if(zombies[i]->froze_flag==0)
+                    {
+                        z_pic[i]->Zombie_Froze();
+                        zombies[i]->froze_flag=1;
+                    }
+                    zombies[i]->attack_flag=0;
+                }
+                if(zombies[i]->froze_flag==0)
+                {
+                    z_pic[i]->Zombie_Froze();
+                    zombies[i]->froze_flag=1;
+                }
                 z_pic[i]->Zombie_Move(3);
+            }
             else
+            {
+                if(zombies[i]->attack_flag==1)
+                {
+                    z_pic[i]->Zombie_Walk();
+                    zombies[i]->attack_flag=0;
+                }
                 z_pic[i]->Zombie_Move(6);
+            }
             if(z_pic[i]->getx()+101<0 && z_pic[i]->del==0){
                 gameover();
                 return ;
@@ -412,6 +440,7 @@ void GameWindow1::plant_death(){
         }
     }
     if(index>=0){
+        pic[plants[index]->col][plants[index]->row].set_pic(0);
         Plant* tmp=plants.takeAt(index);
         delete tmp;
     }

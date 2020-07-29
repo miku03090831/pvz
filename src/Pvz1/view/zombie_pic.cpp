@@ -126,7 +126,7 @@ void Zombie_Pic::Zombie_Move(int speed){    //僵尸移动
 
 void Zombie_Pic::Zombie_Attack(){   //改变为攻击状态
     movie.stop();
-    this->move(this->x()-10,this->y());
+    this->move(this->x(),this->y());
     this->attack=1;
     if(froze){
         switch(type){
