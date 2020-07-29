@@ -89,13 +89,14 @@ void MainWindow::back2()
 }
 
 void MainWindow::win1again(){
-    this->show();
     delete gamewin1;
+    gamewin1=new GameWindow1;
+    gamewin1->show();
     //需要更改
 }
 
 void MainWindow::win1backtomenu(){
     this->show();
-    gamewin1->hide();
+    delete gamewin1;
     //需要更改
 }

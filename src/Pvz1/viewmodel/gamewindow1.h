@@ -25,6 +25,7 @@ class GameWindow1 : public QWidget
     Q_OBJECT
 public:
     explicit GameWindow1(QWidget *parent = 0);
+    ~GameWindow1();
     void sendslot();
     void cursorchange(int cursortype);
     void plant1();
@@ -57,7 +58,7 @@ private:
     Seedbox seedbox;
     QPixmap plantbox_pic;
     gameover_pic gaover_pic;
-    QTimer sun_timer1,sun_timer2,alive_check,plant_act,zombieMove_timer1,zombieGen_timer1;
+    QTimer sun_timer1,sun_timer2,alive_check,plant_act,zombieMove_timer1,zombieGen_timer1,peaMove_timer;
 
 
 

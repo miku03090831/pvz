@@ -60,9 +60,8 @@ GameWindow1::GameWindow1(QWidget *parent) :
     zombieGen_timer1.start(9178);
     zombieMove_timer1.start(187);//timer设定每0.2s进行一次僵尸动画的位置运动
 
-    QTimer *peaMove_timer=new QTimer(this);//豌豆移动计时器
-    peaMove_timer->start(25);
-    connect(peaMove_timer,SIGNAL(timeout()),this,SLOT(move_pea()));
+    peaMove_timer.start(25);
+    connect(&peaMove_timer,SIGNAL(timeout()),this,SLOT(move_pea()));
 
     /*Sun_Pic* sun1=new Sun_Pic(this, 400, 0, 525, 10000);
     Sun_Pic* sun2=new Sun_Pic(this, 700, 0, 525, 10000);
@@ -74,17 +73,15 @@ GameWindow1::GameWindow1(QWidget *parent) :
     connect(&sun_timer2,SIGNAL(timeout()),this,SLOT(sun_down()));
     sun_timer2.start(5000);
 
-    alive_check=new QTimer(this);
-    connect(alive_check,SIGNAL(timeout()),this,SLOT(zombie_hide()));
-    connect(alive_check,SIGNAL(timeout()),this,SLOT(plant_death()));
-    connect(alive_check,SIGNAL(timeout()),this,SLOT(set_sun_num()));
-    connect(alive_check,SIGNAL(timeout()),this,SLOT(pea_hide()));
-    alive_check->start(100);
+    connect(&alive_check,SIGNAL(timeout()),this,SLOT(zombie_hide()));
+    connect(&alive_check,SIGNAL(timeout()),this,SLOT(plant_death()));
+    connect(&alive_check,SIGNAL(timeout()),this,SLOT(set_sun_num()));
+    connect(&alive_check,SIGNAL(timeout()),this,SLOT(pea_hide()));
+    alive_check.start(100);
 
-    plant_act=new QTimer(this);
-    connect(plant_act,SIGNAL(timeout()),this,SLOT(act_plant()));
-    connect(plant_act,SIGNAL(timeout()),this,SLOT(act_pea()));
-    plant_act->start(20);
+    connect(&plant_act,SIGNAL(timeout()),this,SLOT(act_plant()));
+    connect(&plant_act,SIGNAL(timeout()),this,SLOT(act_pea()));
+    plant_act.start(20);
 
 
     //connect的四个参数分别是：1.信号发出者 2.发生的事件 3.信号接受者 4.要执行的动作，也就是槽函数
@@ -220,8 +217,11 @@ void GameWindow1::mousePressEvent(QMouseEvent *event){  //用于取消种植植�
 
 void GameWindow1::move_zombie(){
     for(int i=0;i<z_pic.size();i++){
-        z_pic[i]->Zombie_Move(6);
-        if(z_pic[i]->getx()+101<0 && z_pic[i]->del==0)gameover();
+        z_pic[i]->Zombie_Move(25);
+        if(z_pic[i]->getx()+101<0 && z_pic[i]->del==0){
+            gameover();
+            return ;
+        }
         //zombies[i]->posX=z_pic[i]->getx();
         zombies[i]->move(z_pic[i]->getx(),z_pic[i]->gety());
     }//对zombie_pic list中所有僵尸执行运动，默认步长为20
@@ -326,15 +326,16 @@ void GameWindow1::delete_plant(int col, int row){
 //删除plants中的植物
 
 void GameWindow1::gameover(){
-    gaover_pic.show();
-    gaover_pic.raise();
     //添加计时器停止
     sun_timer1.stop();
     sun_timer2.stop();
     alive_check.stop();
     plant_act.stop();
+    peaMove_timer.stop();
     zombieMove_timer1.stop();
     zombieGen_timer1.stop();
+    gaover_pic.show();
+    gaover_pic.raise();
     for(int i=0;i<zombies.size();i++){
         if(zombies[i]->alive)
         {
@@ -454,4 +455,19 @@ void GameWindow1::move_pea(){
         p_pic[i]->Pea_Move();
         shootpeas[i]->move(p_pic[i]->x(),p_pic[i]->y());
     }
+}
+
+GameWindow1::~GameWindow1(){
+    qDeleteAll(plants.begin(),plants.end());
+    plants.clear();
+    qDeleteAll(shootpeas.begin(),shootpeas.end());
+    shootpeas.clear();
+    qDeleteAll(zombies.begin(),zombies.end());
+    zombies.clear();
+    qDeleteAll(z_pic.begin(),z_pic.end());
+    z_pic.clear();
+    qDeleteAll(sunlight.begin(),sunlight.end());
+    sunlight.clear();
+    qDeleteAll(p_pic.begin(),p_pic.end());
+    p_pic.clear();
 }
