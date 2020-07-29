@@ -94,3 +94,7 @@ int Plant_Pic::getx(){
 int Plant_Pic::gety(){
     return this->y();
 }
+
+void Plant_Pic::stopmovie(){
+    movie.stop();
+}

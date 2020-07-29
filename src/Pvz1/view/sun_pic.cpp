@@ -27,3 +27,7 @@ void Sun_Pic::sunmove(int speed){
 void Sun_Pic::mousePressEvent(QMouseEvent *event){
     if(event->button()==Qt::LeftButton)emit clicked(id);
 }
+
+void Sun_Pic::stopmovie(){
+    movie.stop();
+}

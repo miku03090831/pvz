@@ -17,6 +17,7 @@ public:
     int duration;   //持续时间的标尺，直接使用即可
     int id; //暂时还没有写响应函数，也许需要一个id写
     void mousePressEvent(QMouseEvent *event) override;
+    void stopmovie();
 private:
     int end_x;
     int end_y;
