@@ -66,7 +66,7 @@ GameWindow1::GameWindow1(QWidget *parent) :
 
 
     connect(&zombieMove_timer1,SIGNAL(timeout()),this,SLOT(move_zombie()));
-    zombieGen_timer1.start(9178);
+    zombieGen_timer1.start(4000);
     zombieMove_timer1.start(187);//timer设定每0.2s进行一次僵尸动画的位置运动
 
     peaMove_timer.start(50);
@@ -293,8 +293,9 @@ void GameWindow1::move_zombie(){
 }
 
 void GameWindow1::generate_zombie(){
+    static int count=0;
     int type, row;
-    for(int i=0;i<zombie_G_speed;i++){
+    if(count%5<zombie_G_speed){
         type=Gen_Rand(zombie_G_mode);
         row=Gen_Rand(5);
         z_pic.append(new Zombie_Pic(this,row,type,3,3));
@@ -307,6 +308,7 @@ void GameWindow1::generate_zombie(){
         zombies[zombies.size()-1]->row=row;
         ZombieNum[row]++;
     }
+    count++;
     if(zombies.size()>=10)
         zombie_G_mode=(zombie_G_mode>2)?zombie_G_mode:zombie_G_mode+1;
     else if(zombies.size()>=5)
