@@ -93,7 +93,7 @@ void SimpleZombie::ice()
 ConeheadZombie::ConeheadZombie(QWidget* parent)
 {
     this->speed=0.5;
-    this->health=200;
+    this->health=600;
     this->posX=805;
 
 }
@@ -168,7 +168,7 @@ void ConeheadZombie::ice()
 BucketZombie::BucketZombie(QWidget* parent)
 {
     this->speed=0.5;
-    this->health=200;
+    this->health=1200;
     this->posX=805;
 
 }

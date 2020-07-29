@@ -28,7 +28,7 @@ Zombie_Pic::Zombie_Pic(QWidget* parent, int y, int type, int interval, int movet
     movie.start();
     froze=0;
     this->movetime=movetime;
-    this->move(800,20+98*y);//为了让僵尸出场看起来自然一些把初始坐标改成了800,真正踩上草坪的坐标大概在730左右
+    this->move(750,20+98*y);//为了让僵尸出场看起来自然一些把初始坐标改成了800,真正踩上草坪的坐标大概在730左右
     this->dead=0;
     this->del=0;
     this->attack=0;

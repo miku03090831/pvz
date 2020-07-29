@@ -313,8 +313,8 @@ void GameWindow1::generate_zombie(){
         zombie_G_mode=(zombie_G_mode>2)?zombie_G_mode:zombie_G_mode+1;
     else if(zombies.size()>=5)
         zombie_G_mode=(zombie_G_mode>1)?zombie_G_mode:zombie_G_mode+1;
-    if(zombies.size()<=40)
-        zombie_G_speed=zombies.size()/10+1;
+    if(zombies.size()<=20)
+        zombie_G_speed=zombies.size()/5+1;
 
 
 //    for(int i=0;i<5;i++)
