@@ -226,13 +226,21 @@ void GameWindow1::mousePressEvent(QMouseEvent *event){  //用于取消种植植�
 
 void GameWindow1::move_zombie(){
     for(int i=0;i<z_pic.size();i++){
-        z_pic[i]->Zombie_Move(6);
-        if(z_pic[i]->getx()+101<0 && z_pic[i]->del==0){
-            gameover();
-            return ;
+        if(!zombies[i]->moving){
+            z_pic[i]->Zombie_Attack();
         }
-        //zombies[i]->posX=z_pic[i]->getx();
-        zombies[i]->move(z_pic[i]->getx(),z_pic[i]->gety());
+        else{
+            if(zombies[i]->iced)
+                z_pic[i]->Zombie_Move(3);
+            else
+                z_pic[i]->Zombie_Move(6);
+            if(z_pic[i]->getx()+101<0 && z_pic[i]->del==0){
+                gameover();
+                return ;
+            }
+            //zombies[i]->posX=z_pic[i]->getx();
+            zombies[i]->move(z_pic[i]->getx(),z_pic[i]->gety());
+        }
     }//对zombie_pic list中所有僵尸执行运动，默认步长为20
     for(int i=0;i<6;i++)
     {
