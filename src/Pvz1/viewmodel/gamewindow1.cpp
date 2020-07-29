@@ -1,8 +1,10 @@
 ﻿#include "gamewindow1.h"
+#include <QDebug>
 /*建议可以尝试填充button的响应函数*/
 
 QList<Zombie_Pic*> GameWindow1::z_pic;
 QList<Sun_Pic*> GameWindow1::sunlight;
+QList<Pea_Pic*> GameWindow1::p_pic;
 
 GameWindow1::GameWindow1(QWidget *parent) :
     QWidget(parent)
@@ -60,7 +62,9 @@ GameWindow1::GameWindow1(QWidget *parent) :
     zombieGen_timer1->start(9178);
     zombieMove_timer1->start(187);//timer设定每0.2s进行一次僵尸动画的位置运动
 
-
+    QTimer *peaMove_timer=new QTimer(this);//豌豆移动计时器
+    peaMove_timer->start(25);
+    connect(peaMove_timer,SIGNAL(timeout()),this,SLOT(move_pea()));
 
     /*Sun_Pic* sun1=new Sun_Pic(this, 400, 0, 525, 10000);
     Sun_Pic* sun2=new Sun_Pic(this, 700, 0, 525, 10000);
@@ -78,10 +82,12 @@ GameWindow1::GameWindow1(QWidget *parent) :
     connect(alive_check,SIGNAL(timeout()),this,SLOT(zombie_hide()));
     connect(alive_check,SIGNAL(timeout()),this,SLOT(plant_death()));
     connect(alive_check,SIGNAL(timeout()),this,SLOT(set_sun_num()));
+    connect(alive_check,SIGNAL(timeout()),this,SLOT(pea_hide()));
     alive_check->start(100);
 
     QTimer *plant_act=new QTimer(this);
     connect(plant_act,SIGNAL(timeout()),this,SLOT(act_plant()));
+    connect(plant_act,SIGNAL(timeout()),this,SLOT(act_pea()));
     plant_act->start(20);
 
 
@@ -226,6 +232,22 @@ void GameWindow1::move_zombie(){
         //zombies[i]->posX=z_pic[i]->getx();
         zombies[i]->move(z_pic[i]->getx(),z_pic[i]->gety());
     }//对zombie_pic list中所有僵尸执行运动，默认步长为20
+    for(int i=0;i<6;i++)
+    {
+        seedbox.p[i].raise();
+    }
+    for(int i=0;i<9;i++)
+    {
+        for(int j=0;j<5;j++)
+        {
+            box[i][j].raise();
+        }
+    }
+    Sun_Pic* s;
+    foreach(s,sunlight)
+    {
+        s->raise();
+    }
 }
 
 void GameWindow1::generate_zombie(){
@@ -243,6 +265,11 @@ void GameWindow1::generate_zombie(){
         zombies[zombies.size()-1]->row=row;
         ZombieNum[row]++;
     }
+//    for(int i=0;i<5;i++)
+//    {
+//        qDebug()<<ZombieNum[i]<<" ";
+//    }
+//    qDebug()<<endl;
 }
 
 int GameWindow1::Gen_Rand(int upper){
@@ -323,14 +350,25 @@ void GameWindow1::win1backtomenu(){
 }
 void GameWindow1::zombie_hide(){
     for(int i=0;i<zombies.size();i++){
-        if(!zombies[i]->alive)
+        if(!zombies[i]->alive && zombies[i]->flag==0)
         {
             zombies[i]->hide();
             z_pic[i]->del=1;
             z_pic[i]->hide();
+            zombies[i]->flag=1;
+            ZombieNum[zombies[i]->row]--;
         }
     }
 }//隐藏已死亡僵尸
+
+void GameWindow1::pea_hide(){
+    for(int i=0;i<shootpeas.size();i++){
+        if(!shootpeas[i]->alive)
+        {
+            p_pic[i]->hide();
+        }
+    }
+}//隐藏击中目标后的豌豆
 
 void GameWindow1::plant_death(){
     int index=-1;
@@ -371,12 +409,15 @@ void GameWindow1::act_plant(){
             Pea *p=new Pea;
             p->row=plants[i]->row;
             shootpeas.append(p);
-
+            Normal_Pea *p_p=new Normal_Pea(this,plants[i]->col,plants[i]->row,10);
+            p_pic.append(p_p);
         }
         else if(plants[i]->state==2){
             Ice *p=new Ice;
             p->row=plants[i]->row;
             shootpeas.append(p);
+            Snow_Pea *p_p=new Snow_Pea(this,plants[i]->col,plants[i]->row,10);
+            p_pic.append(p_p);
         }
         else if(plants[i]->state==-1){
             sunlight.append(new Sun_Pic(this,plants[i]->x()+30,plants[i]->y(),plants[i]->y(),0,sunlight.size()));
@@ -385,3 +426,19 @@ void GameWindow1::act_plant(){
     }
 }//射出豌豆的设定
 
+void GameWindow1::act_pea()
+{
+    ShootPea *spea;
+    foreach(spea,shootpeas)
+    {
+        spea->act();
+    }
+}
+
+void GameWindow1::move_pea(){
+    for(int i=0;i<p_pic.size();i++)
+    {
+        p_pic[i]->Pea_Move();
+        shootpeas[i]->move(p_pic[i]->x(),p_pic[i]->y());
+    }
+}

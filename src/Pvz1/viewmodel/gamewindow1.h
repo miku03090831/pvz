@@ -40,6 +40,7 @@ public:
     static QList<Zombie*> zombies;
     static QList<Zombie_Pic*> z_pic;
     static QList<Sun_Pic*> sunlight;
+    static QList<Pea_Pic*> p_pic;
     static int ZombieNum[5];//记录场上每一行僵尸的数量
     void append_plant(int col, int row);
     void delete_plant(int col, int row);
@@ -80,6 +81,9 @@ public slots:
     void sun_click(int);
     void set_sun_num();
     void act_plant();
+    void move_pea();
+    void act_pea();
+    void pea_hide();
 };
 
 
