@@ -47,6 +47,15 @@ GameWindow1::GameWindow1(QWidget *parent) :
         }
     }
 
+    for(i=0;i<6;i++){   //植物栏按钮
+        plant_box[i].setParent(this);
+        plant_box[i].setGeometry(88+60*i,5,50,75);
+        plant_box[i].setStyleSheet("QPushButton{background-color:transparent;}");
+        connect(&plant_box[i],SIGNAL(clicked()),&boxmapper,SLOT(map()));
+        boxmapper.setMapping(&plant_box[i],i+1);
+        plant_box[i].raise();
+    }
+
     /*用来测试zombie动画效果的代码
     Zombie_Pic *zombie1= new Zombie_Pic(this,0,0,0,2);
     Zombie_Pic *zombie2= new Zombie_Pic(this,2,1,0,2);
@@ -91,7 +100,7 @@ GameWindow1::GameWindow1(QWidget *parent) :
     connect(&b3,&QPushButton::clicked,this,&GameWindow1::sendslot);
     connect(&shovel,&QPushButton::clicked,this,&GameWindow1::show_shovel);
     connect(&signalmapper,SIGNAL(mapped(int)),this,SLOT(putplant(int)));
-    connect(&seedbox.seedboxmapper,SIGNAL(mapped(int)),this,SLOT(seedbox_clicked(int)));    //响应植物栏点击
+    connect(&boxmapper,SIGNAL(mapped(int)),this,SLOT(seedbox_clicked(int)));    //响应植物栏点击
     //用于响应点击
     normalpea.load(":/image/res/normalpea.png");
     snowpea.load(":/image/res/snowpea.png");
@@ -217,7 +226,7 @@ void GameWindow1::mousePressEvent(QMouseEvent *event){  //用于取消种植植�
 
 void GameWindow1::move_zombie(){
     for(int i=0;i<z_pic.size();i++){
-        z_pic[i]->Zombie_Move(25);
+        z_pic[i]->Zombie_Move(6);
         if(z_pic[i]->getx()+101<0 && z_pic[i]->del==0){
             gameover();
             return ;
@@ -227,7 +236,7 @@ void GameWindow1::move_zombie(){
     }//对zombie_pic list中所有僵尸执行运动，默认步长为20
     for(int i=0;i<6;i++)
     {
-        seedbox.p[i].raise();
+        plant_box[i].raise();
     }
     for(int i=0;i<9;i++)
     {
@@ -236,6 +245,8 @@ void GameWindow1::move_zombie(){
             box[i][j].raise();
         }
     }
+    shovel.raise();
+    b3.raise();
     Sun_Pic* s;
     foreach(s,sunlight)
     {

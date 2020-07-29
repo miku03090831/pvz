@@ -47,13 +47,13 @@ public:
     void gameover();    //游戏结束
 
 private:
-    QPushButton b3,shovel,box[9][5];
+    QPushButton b3,shovel,box[9][5],plant_box[6];
     Plant_Pic pic[9][5];
     int cursor_type;
     int Sunlight_num=50;
     int zombie_G_mode=3;
     int zombie_G_speed=3;//G_mode是产生僵尸类型的限制，G_speed是产生僵尸的速度限制
-    QSignalMapper signalmapper;
+    QSignalMapper signalmapper,boxmapper;
     QLabel plantbox;
     Seedbox seedbox;
     QPixmap plantbox_pic;
