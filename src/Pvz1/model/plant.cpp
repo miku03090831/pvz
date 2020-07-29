@@ -39,6 +39,7 @@ void SinglePea::act()
         if(GameWindow1::ZombieNum[this->row] == 0)
         {
             this->timer=qrand()%50;//避免刚出现僵尸的时候，所有豌豆的节奏太整齐
+            state=0;
             return;
         }
         this->timer=this->interval;
@@ -80,6 +81,7 @@ void IcePea::act()
         if(GameWindow1::ZombieNum[this->row] == 0)
         {
             this->timer=qrand()%50;//避免刚出现僵尸的时候，所有豌豆的节奏太整齐
+            state=0;
             return;
         }
         this->timer=this->interval;
@@ -119,6 +121,7 @@ void DoublePea::act()
         if(GameWindow1::ZombieNum[this->row] == 0)
         {
             this->timer=qrand()%50;//避免刚出现僵尸的时候，所有豌豆的节奏太整齐
+            state=0;
             return;
         }
         this->timer=this->interval;
@@ -130,7 +133,7 @@ void DoublePea::act()
         //省略了win2的情况
         //播放射出豌豆动画
     }
-    else if(this->timer==10)//为保证射出的两颗豌豆能够区分得开，需要让两颗豌豆保持一定的时间间隔
+    else if(this->timer==5)//为保证射出的两颗豌豆能够区分得开，需要让两颗豌豆保持一定的时间间隔
     {
         if(GameWindow1::ZombieNum[this->row] == 0)
         {

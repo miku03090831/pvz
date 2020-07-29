@@ -18,6 +18,7 @@ public:
     int interval=0;//攻击间隔
     bool iced=false;
     bool moving=true;
+    int flag=0;
     double speed;
     int posX;//横坐标
 };

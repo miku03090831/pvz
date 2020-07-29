@@ -10,10 +10,10 @@ public:
     ~Seedbox();
     void SunNumChange(int sunnumber);   //设置阳光的数字
     QSignalMapper seedboxmapper;
-
+    QPushButton p[6];
 private:
     QPixmap seedbox_pic;
-    QPushButton p[6];
+
     QLabel suntext;
 };
 
