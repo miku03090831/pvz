@@ -185,11 +185,48 @@ void GameWindow1::starttimer(){
     this->timer.start();
 }
 
-void GameWindow1::move_zombie(){
+void GameWindow1::move_zombie(){    
     for(int i=0;i<z_pic.size();i++){
+<<<<<<< Updated upstream
         z_pic[i]->Zombie_Walk();
         z_pic[i]->Zombie_Move(20);
     }//对zombie_pic list中所有僵尸执行运动，默认步长为20
+=======
+        if(zombies[i]->moving){
+            z_pic[i]->Zombie_Attack();
+        }
+        else{
+            if(zombies[i]->iced){
+                z_pic[i]->Zombie_Move(3);
+            }
+            else{
+                z_pic[i]->Zombie_Move(6);
+            }
+            if(z_pic[i]->getx()+101<0 && z_pic[i]->del==0){
+                gameover();
+                return ;
+            }
+            //zombies[i]->posX=z_pic[i]->getx();
+            zombies[i]->move(z_pic[i]->getx(),z_pic[i]->gety());
+        }
+    }//对zombie_pic list中所有僵尸执行运动
+    for(int i=0;i<6;i++)
+    {
+        seedbox.p[i].raise();
+    }
+    for(int i=0;i<9;i++)
+    {
+        for(int j=0;j<5;j++)
+        {
+            box[i][j].raise();
+        }
+    }
+    Sun_Pic* s;
+    foreach(s,sunlight)
+    {
+        s->raise();
+    }
+>>>>>>> Stashed changes
 }
 
 void GameWindow1::generate_zombie(){
