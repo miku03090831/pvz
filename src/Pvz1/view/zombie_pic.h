@@ -22,6 +22,7 @@ public:
     void Zombie_deFroze();  //解冻
     void Zombie_Burn(); //被烧死，之后会添加消除图像的函数
     void stopmovie();
+    void setFroze(int i);
     int getx(); //获取x
     int gety(); //获取y
     int del;    //=1表示应该删除

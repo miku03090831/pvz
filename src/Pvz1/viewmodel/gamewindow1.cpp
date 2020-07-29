@@ -230,6 +230,8 @@ void GameWindow1::move_zombie(){
         if(!zombies[i]->moving){
             if(zombies[i]->attack_flag==0)
             {
+                if(zombies[i]->froze_flag==1)
+                    z_pic[i]->setFroze(1);
                 z_pic[i]->Zombie_Attack();
                 zombies[i]->attack_flag=1;
             }

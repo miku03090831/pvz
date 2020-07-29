@@ -302,3 +302,7 @@ int Zombie_Pic::gety(){
 void Zombie_Pic::stopmovie(){
     movie.stop();
 }
+
+void Zombie_Pic::setFroze(int i){
+    this->froze=i;
+}
