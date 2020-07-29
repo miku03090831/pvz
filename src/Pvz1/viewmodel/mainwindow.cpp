@@ -1,6 +1,5 @@
 ﻿#include "mainwindow.h"
 #include "gamewindow1.h"
-#include "gamewindow2.h"
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -23,13 +22,6 @@ MainWindow::MainWindow(QWidget *parent)
     b1.setParent(this);
     b1.setGeometry(29,402,162,113);  //位置大小
 
-    b2.setStyleSheet("QPushButton{background-color:transparent;}"
-                     "QPushButton:pressed{border-image:url(:/image/res/mode.png);}");
-    //第二个按钮的背景及按下效果
-
-    b2.setParent(this);
-    b2.setGeometry(241,160,297,141);  //位置大小
-
 
     b5.setStyleSheet("QPushButton{background-color:transparent;}"
                      "QPushButton:pressed{border-image:url(:/image/res/quit.png);}");
@@ -41,7 +33,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(&b5,&QPushButton::clicked,this,&MainWindow::close);
     connect(&b1,&QPushButton::clicked,this,&MainWindow::game1);
-    connect(&b2,&QPushButton::clicked,this,&MainWindow::game2);
 
 
 }
@@ -73,20 +64,7 @@ void MainWindow::back1()
 
 }
 
-void MainWindow::game2()
-{
-    flag=2;
-    gamewin2=new GameWindow2;
-    gamewin2->show();
-    flag=2;
-    this->hide();
-    connect(gamewin2,&GameWindow2::myslot,this,&MainWindow::back2);
-}
-void MainWindow::back2()
-{
-    this->show();
-    delete gamewin2;
-}
+
 
 void MainWindow::win1again(){
     delete gamewin1;
