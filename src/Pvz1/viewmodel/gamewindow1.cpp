@@ -51,14 +51,12 @@ GameWindow1::GameWindow1(QWidget *parent) :
     z_pic.append(zombie1);
     z_pic.append(zombie2);
     */
-    zombieGen_timer1=new QTimer(this);//僵尸生成计时器
-    connect(zombieGen_timer1,SIGNAL(timeout()),this,SLOT(generate_zombie()));
+    connect(&zombieGen_timer1,SIGNAL(timeout()),this,SLOT(generate_zombie()));
 
 
-    zombieMove_timer1=new QTimer(this);//僵尸运动的计时器
-    connect(zombieMove_timer1,SIGNAL(timeout()),this,SLOT(move_zombie()));
-    zombieGen_timer1->start(9178);
-    zombieMove_timer1->start(187);//timer设定每0.2s进行一次僵尸动画的位置运动
+    connect(&zombieMove_timer1,SIGNAL(timeout()),this,SLOT(move_zombie()));
+    zombieGen_timer1.start(9178);
+    zombieMove_timer1.start(187);//timer设定每0.2s进行一次僵尸动画的位置运动
 
 
 
@@ -66,23 +64,19 @@ GameWindow1::GameWindow1(QWidget *parent) :
     Sun_Pic* sun2=new Sun_Pic(this, 700, 0, 525, 10000);
     sunlight.append(sun1);
     sunlight.append(sun2);*/
-    sun_timer1=new QTimer(this);
-    connect(sun_timer1,SIGNAL(timeout()),this,SLOT(sun_move()));
-    sun_timer1->start(20);
+    connect(&sun_timer1,SIGNAL(timeout()),this,SLOT(sun_move()));
+    sun_timer1.start(20);
 
-    sun_timer2=new QTimer(this);
-    connect(sun_timer2,SIGNAL(timeout()),this,SLOT(sun_down()));
-    sun_timer2->start(5000);
+    connect(&sun_timer2,SIGNAL(timeout()),this,SLOT(sun_down()));
+    sun_timer2.start(5000);
 
-    alive_check=new QTimer(this);
-    connect(alive_check,SIGNAL(timeout()),this,SLOT(zombie_hide()));
-    connect(alive_check,SIGNAL(timeout()),this,SLOT(plant_death()));
-    connect(alive_check,SIGNAL(timeout()),this,SLOT(set_sun_num()));
-    alive_check->start(100);
+    connect(&alive_check,SIGNAL(timeout()),this,SLOT(zombie_hide()));
+    connect(&alive_check,SIGNAL(timeout()),this,SLOT(plant_death()));
+    connect(&alive_check,SIGNAL(timeout()),this,SLOT(set_sun_num()));
+    alive_check.start(100);
 
-    plant_act=new QTimer(this);
-    connect(plant_act,SIGNAL(timeout()),this,SLOT(act_plant()));
-    plant_act->start(20);
+    connect(&plant_act,SIGNAL(timeout()),this,SLOT(act_plant()));
+    plant_act.start(20);
 
 
     //connect的四个参数分别是：1.信号发出者 2.发生的事件 3.信号接受者 4.要执行的动作，也就是槽函数
@@ -306,12 +300,12 @@ void GameWindow1::gameover(){
     gaover_pic.show();
     gaover_pic.raise();
     //添加计时器停止
-    sun_timer1->stop();
-    sun_timer2->stop();
-    alive_check->stop();
-    plant_act->stop();
-    zombieMove_timer1->stop();
-    zombieGen_timer1->stop();
+    sun_timer1.stop();
+    sun_timer2.stop();
+    alive_check.stop();
+    plant_act.stop();
+    zombieMove_timer1.stop();
+    zombieGen_timer1.stop();
     for(int i=0;i<zombies.size();i++){
         if(zombies[i]->alive)
         {
