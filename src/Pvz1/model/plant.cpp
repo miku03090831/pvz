@@ -166,7 +166,7 @@ SunFlower::SunFlower(QWidget* parent):Plant(parent)
     //播放gif
 
     this->health=200;
-    this->interval=100;
+    this->interval=200;
     this->timer=this->interval;
 }
 

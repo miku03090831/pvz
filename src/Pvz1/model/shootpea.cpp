@@ -30,7 +30,7 @@ void Pea::act()
         if((qAbs(z->x() - this->x() <= 10))&&(this->row == z->row) && (this->alive) &&(z->alive))
         {
             this->alive=false;
-            z->hit(100);
+            z->hit(20);
             return;
         }
     }

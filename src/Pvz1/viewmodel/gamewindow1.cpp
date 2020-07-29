@@ -69,7 +69,7 @@ GameWindow1::GameWindow1(QWidget *parent) :
     zombieGen_timer1.start(9178);
     zombieMove_timer1.start(187);//timer设定每0.2s进行一次僵尸动画的位置运动
 
-    peaMove_timer.start(25);
+    peaMove_timer.start(50);
     connect(&peaMove_timer,SIGNAL(timeout()),this,SLOT(move_pea()));
 
     /*Sun_Pic* sun1=new Sun_Pic(this, 400, 0, 525, 10000);
@@ -253,7 +253,7 @@ void GameWindow1::move_zombie(){
                     z_pic[i]->Zombie_Froze();
                     zombies[i]->froze_flag=1;
                 }
-                z_pic[i]->Zombie_Move(3);
+                z_pic[i]->Zombie_Move(2);
             }
             else
             {
@@ -262,7 +262,7 @@ void GameWindow1::move_zombie(){
                     z_pic[i]->Zombie_Walk();
                     zombies[i]->attack_flag=0;
                 }
-                z_pic[i]->Zombie_Move(6);
+                z_pic[i]->Zombie_Move(4);
             }
             if(z_pic[i]->getx()+101<0 && z_pic[i]->del==0){
                 gameover();
@@ -294,7 +294,7 @@ void GameWindow1::move_zombie(){
 
 void GameWindow1::generate_zombie(){
     int type, row;
-    for(int i=0;i<1;i++){
+    for(int i=0;i<zombie_G_speed;i++){
         type=Gen_Rand(zombie_G_mode);
         row=Gen_Rand(5);
         z_pic.append(new Zombie_Pic(this,row,type,3,3));
@@ -307,6 +307,14 @@ void GameWindow1::generate_zombie(){
         zombies[zombies.size()-1]->row=row;
         ZombieNum[row]++;
     }
+    if(zombies.size()>=10)
+        zombie_G_mode=(zombie_G_mode>2)?zombie_G_mode:zombie_G_mode+1;
+    else if(zombies.size()>=5)
+        zombie_G_mode=(zombie_G_mode>1)?zombie_G_mode:zombie_G_mode+1;
+    if(zombies.size()<=40)
+        zombie_G_speed=zombies.size()/10+1;
+
+
 //    for(int i=0;i<5;i++)
 //    {
 //        qDebug()<<ZombieNum[i]<<" ";
@@ -484,7 +492,7 @@ void GameWindow1::act_plant(){
             p_pic.append(p_p);
         }
         else if(plants[i]->state==-1){
-            sunlight.append(new Sun_Pic(this,plants[i]->x()+30,plants[i]->y(),plants[i]->y(),0,sunlight.size()));
+            sunlight.append(new Sun_Pic(this,plants[i]->x()+30,plants[i]->y()-15,plants[i]->y()+5,0,sunlight.size()));
             connect(sunlight[sunlight.size()-1],SIGNAL(clicked(int)),this,SLOT(sun_click(int)));
         }
     }
