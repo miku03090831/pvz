@@ -51,11 +51,11 @@ GameWindow1::GameWindow1(QWidget *parent) :
     z_pic.append(zombie1);
     z_pic.append(zombie2);
     */
-    QTimer *zombieGen_timer1=new QTimer(this);//僵尸生成计时器
+    zombieGen_timer1=new QTimer(this);//僵尸生成计时器
     connect(zombieGen_timer1,SIGNAL(timeout()),this,SLOT(generate_zombie()));
 
 
-    QTimer *zombieMove_timer1=new QTimer(this);//僵尸运动的计时器
+    zombieMove_timer1=new QTimer(this);//僵尸运动的计时器
     connect(zombieMove_timer1,SIGNAL(timeout()),this,SLOT(move_zombie()));
     zombieGen_timer1->start(9178);
     zombieMove_timer1->start(187);//timer设定每0.2s进行一次僵尸动画的位置运动
@@ -66,21 +66,21 @@ GameWindow1::GameWindow1(QWidget *parent) :
     Sun_Pic* sun2=new Sun_Pic(this, 700, 0, 525, 10000);
     sunlight.append(sun1);
     sunlight.append(sun2);*/
-    QTimer *sun_timer1=new QTimer(this);
+    sun_timer1=new QTimer(this);
     connect(sun_timer1,SIGNAL(timeout()),this,SLOT(sun_move()));
     sun_timer1->start(20);
 
-    QTimer *sun_timer2=new QTimer(this);
+    sun_timer2=new QTimer(this);
     connect(sun_timer2,SIGNAL(timeout()),this,SLOT(sun_down()));
     sun_timer2->start(5000);
 
-    QTimer *alive_check=new QTimer(this);
+    alive_check=new QTimer(this);
     connect(alive_check,SIGNAL(timeout()),this,SLOT(zombie_hide()));
     connect(alive_check,SIGNAL(timeout()),this,SLOT(plant_death()));
     connect(alive_check,SIGNAL(timeout()),this,SLOT(set_sun_num()));
     alive_check->start(100);
 
-    QTimer *plant_act=new QTimer(this);
+    plant_act=new QTimer(this);
     connect(plant_act,SIGNAL(timeout()),this,SLOT(act_plant()));
     plant_act->start(20);
 
@@ -215,9 +215,6 @@ void GameWindow1::mousePressEvent(QMouseEvent *event){  //用于取消种植植�
     }else return ;
 }
 
-void GameWindow1::starttimer(){
-    this->timer.start();
-}
 
 void GameWindow1::move_zombie(){
     for(int i=0;i<z_pic.size();i++){
@@ -309,6 +306,26 @@ void GameWindow1::gameover(){
     gaover_pic.show();
     gaover_pic.raise();
     //添加计时器停止
+    sun_timer1->stop();
+    sun_timer2->stop();
+    alive_check->stop();
+    plant_act->stop();
+    zombieMove_timer1->stop();
+    zombieGen_timer1->stop();
+    for(int i=0;i<zombies.size();i++){
+        if(zombies[i]->alive)
+        {
+            z_pic[i]->stopmovie();
+        }
+    }
+    for(int i=0;i<9;i++){
+        for(int j=0;j<5;j++){
+            pic[i][j].stopmovie();
+        }
+    }
+    for(int i=0;i<sunlight.size();i++){
+        sunlight[i]->stopmovie();
+    }
     this->setAttribute(Qt::WA_TransparentForMouseEvents,true);
     connect(&gaover_pic.again,SIGNAL(clicked()),this,SLOT(win1again()));
     connect(&gaover_pic.backtomenu,SIGNAL(clicked()),this,SLOT(win1backtomenu()));

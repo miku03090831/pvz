@@ -26,8 +26,8 @@ public:
     void win1backtomenu();
     QWidget* GetWin();
     int flag=1;
-    GameWindow1 gamewin1;//普通无尽窗口的对象
-    GameWindow2 gamewin2;//传送带窗口的对象
+    GameWindow1 *gamewin1;//普通无尽窗口的对象
+    GameWindow2 *gamewin2;//传送带窗口的对象
 
 private:
     QPushButton b1,b2,b5;//b1是进入普通无尽的按钮，b2是进入传送带的按钮，b5是退出游戏的按钮

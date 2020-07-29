@@ -21,6 +21,7 @@ public:
     void Zombie_Froze();    //冰冻，会影响其他的函数，其他函数调用后依然为冰冻状态
     void Zombie_deFroze();  //解冻
     void Zombie_Burn(); //被烧死，之后会添加消除图像的函数
+    void stopmovie();
     int getx(); //获取x
     int gety(); //获取y
     int del;    //=1表示应该删除

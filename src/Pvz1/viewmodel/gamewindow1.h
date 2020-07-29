@@ -28,7 +28,6 @@ public:
     void sendslot();
     void cursorchange(int cursortype);
     void plant1();
-    void starttimer();
     void sunlight_sub();
     int Gen_Rand(int upper);
     Sun_Pic *sp;
@@ -53,11 +52,11 @@ private:
     int zombie_G_mode=3;
     int zombie_G_speed=3;//G_mode是产生僵尸类型的限制，G_speed是产生僵尸的速度限制
     QSignalMapper signalmapper;
-    QTimeLine timer;
     QLabel plantbox;
     Seedbox seedbox;
     QPixmap plantbox_pic;
     gameover_pic gaover_pic;
+    QTimer *sun_timer1,*sun_timer2,*alive_check,*plant_act,*zombieMove_timer1,*zombieGen_timer1;
 
 
 

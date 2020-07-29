@@ -15,6 +15,7 @@ public:
     int gettype();
     int getx();
     int gety();
+    void stopmovie();
 private:
     int type=0;
     int framenum;

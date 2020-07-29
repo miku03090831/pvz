@@ -299,4 +299,6 @@ int Zombie_Pic::gety(){
     return this->y();
 }
 
-
+void Zombie_Pic::stopmovie(){
+    movie.stop();
+}
