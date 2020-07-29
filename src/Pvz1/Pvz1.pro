@@ -24,7 +24,6 @@ SOURCES += \
     view/sun_pic.cpp \
     view/zombie_pic.cpp \
     viewmodel/gamewindow1.cpp \
-    viewmodel/gamewindow2.cpp \
     app/main.cpp \
     viewmodel/mainwindow.cpp \
     model/plant.cpp \
@@ -40,7 +39,6 @@ HEADERS += \
     view/sun_pic.h \
     view/zombie_pic.h \
     viewmodel/gamewindow1.h \
-    viewmodel/gamewindow2.h \
     viewmodel/mainwindow.h \
     model/plant.h \
     model/shootpea.h \
