@@ -69,7 +69,7 @@ GameWindow1::GameWindow1(QWidget *parent) :
     zombieGen_timer1.start(4000);
     zombieMove_timer1.start(187);//timer设定每0.2s进行一次僵尸动画的位置运动
 
-    peaMove_timer.start(50);
+    peaMove_timer.start(25);
     connect(&peaMove_timer,SIGNAL(timeout()),this,SLOT(move_pea()));
 
     /*Sun_Pic* sun1=new Sun_Pic(this, 400, 0, 525, 10000);
@@ -80,7 +80,7 @@ GameWindow1::GameWindow1(QWidget *parent) :
     sun_timer1.start(20);
 
     connect(&sun_timer2,SIGNAL(timeout()),this,SLOT(sun_down()));
-    sun_timer2.start(5000);
+    sun_timer2.start(7500);
 
     connect(&alive_check,SIGNAL(timeout()),this,SLOT(zombie_hide()));
     connect(&alive_check,SIGNAL(timeout()),this,SLOT(plant_death()));
@@ -483,7 +483,7 @@ void GameWindow1::act_plant(){
             Pea *p=new Pea;
             p->row=plants[i]->row;
             shootpeas.append(p);
-            Normal_Pea *p_p=new Normal_Pea(this,plants[i]->col,plants[i]->row,10);
+            Normal_Pea *p_p=new Normal_Pea(this,plants[i]->col,plants[i]->row,5);
             p_pic.append(p_p);
         }
         else if(plants[i]->state==2){
